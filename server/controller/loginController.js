@@ -1,4 +1,5 @@
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 async function loginUser(req, res) {
   try {
@@ -17,15 +18,16 @@ async function loginUser(req, res) {
     if (!passwordCorrect) {
       return res.status(403).send("Access denied");
     }
+    const userRes = {
+      id: user.id,
+      firstName: user.first_name,
+      lastName: user.last_name,
+      email: user.email,
+    };
 
-    res.status(200).send({
-      user: {
-        id: user.id,
-        firstName: user.first_name,
-        lastName: user.last_name,
-        email: user.email,
-      },
-    });
+    const accessToken = jwt.sign(userRes, process.env.JWT_SECRET);
+
+    res.status(200).send({ user: userRes, accessToken });
   } catch (error) {
     res.status(500).send(error);
   }

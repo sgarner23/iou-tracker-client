@@ -5,6 +5,7 @@ const path = require("path");
 
 const loginRouter = require("./router/login");
 const createUserRouter = require("./router/createUser");
+const createInvoiceRouter = require("./router/createInvoice");
 
 require("dotenv").config({
   path: path.join(__dirname, "./.env"),
@@ -18,6 +19,7 @@ app.use(cors());
 
 app.use("/", loginRouter);
 app.use("/", createUserRouter);
+app.use("/", createInvoiceRouter);
 
 massive({
   connectionString: CONNECTION_STRING,

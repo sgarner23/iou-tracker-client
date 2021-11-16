@@ -1,6 +1,7 @@
-import React, { useReducer, useEffect } from "react";
+import React, { useReducer, useEffect, useState } from "react";
 import LoginButton from "../components/LoginButton";
 import LoginInput from "../components/LoginInput";
+import getUserInfoOnLogin from "../api/getUser";
 
 const LoginFormContainer = ({ loginIsActive }) => {
   const initialValues = {
@@ -74,14 +75,19 @@ const LoginFormContainer = ({ loginIsActive }) => {
     }
   }
 
+  let isLoginError = false;
+
   function submitHandler(e) {
     e.preventDefault();
+    isLoginError = false;
 
     if (!emailAddress.includes("@")) {
       setFormValues({ emailAddressError: true });
+      isLoginError = true;
     }
     if (password.length < 6) {
       setFormValues({ passwordError: true });
+      isLoginError = true;
     }
     if (firstName.length === 0) {
       setFormValues({ firstNameError: true });
@@ -93,7 +99,10 @@ const LoginFormContainer = ({ loginIsActive }) => {
       setFormValues({ confirmPasswordError: true });
     }
 
-    console.log(emailAddress);
+    if (!isLoginError && loginIsActive) {
+      console.log("We about to log in");
+      getUserInfoOnLogin(emailAddress, password);
+    }
   }
 
   return (
