@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { userContext } from "../store/userStore";
 
-import Card from "../components/Card";
-import LoginButton from "../components/LoginButton";
+import Card from "../components/UI/Card";
+import LoginButton from "../components/UI/LoginButton";
 import LoginFormContainer from "../components/LoginFormContainer";
 
 import "./Login.css";
+import SignupModal from "../components/UI/Modals/SignupModal";
 
 const Login = () => {
+  const { state, dispatch } = useContext(userContext);
   const [loginIsActive, setLoginIsActive] = useState(true);
 
   function clickHandler(e) {
@@ -22,6 +25,7 @@ const Login = () => {
 
   return (
     <div className="login-page">
+      {state.modalToDisplay === "userCreated" && <SignupModal />}
       <Card>
         <h1>{loginIsActive ? "Login Form" : "Signup Form"}</h1>
         <div className="login-btns-container">

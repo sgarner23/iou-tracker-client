@@ -2,7 +2,7 @@ import React, { useReducer, useEffect, useContext, useState } from "react";
 import { useNavigate } from "react-router";
 import { userContext } from "../store/userStore";
 
-import LoginButton from "../components/LoginButton";
+import LoginButton from "./UI/LoginButton";
 import LoginInput from "../components/LoginInput";
 
 import getUserInfoOnLogin from "../api/getUser";
@@ -118,6 +118,8 @@ const LoginFormContainer = ({ loginIsActive, setLoginIsActive }) => {
       const userInfo = await getUserInfoOnLogin(emailAddress, password);
       state.user = userInfo;
       if (state.user) {
+        console.log("We gonna navigate to profile page");
+        console.log(state.user);
         navigate("/profile");
       } else {
         setLoginNotSuccessful(true);
