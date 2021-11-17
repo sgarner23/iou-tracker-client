@@ -8,14 +8,13 @@ import "./App.css";
 
 function App() {
   const { state, dispatch } = useContext(userContext);
-  console.log(state.user);
 
   return (
     <div>
       <Routes>
         <Route
           path="/"
-          element={<Navigate to={state.user ? "/profile" : "/login"} />}
+          element={<Navigate replace to={state.user ? "/profile" : "/login"} />}
         />
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />

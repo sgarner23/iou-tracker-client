@@ -6,11 +6,12 @@ async function getUserInfoOnLogin(email, password) {
       email,
       password,
     });
-    console.log(res.data.accessToken);
     sessionStorage.setItem("accessToken", res.data.accessToken);
-    //set the user as logged in
+
+    return res.data.user;
   } catch (error) {
     console.log(error);
+    return;
   }
 }
 

@@ -36,7 +36,10 @@ const Login = () => {
             </LoginButton>
           </div>
         </div>
-        <LoginFormContainer loginIsActive={loginIsActive} />
+        <LoginFormContainer
+          loginIsActive={loginIsActive}
+          setLoginIsActive={setLoginIsActive}
+        />
         <div className="bottom-text">
           <p>Not a member?</p>{" "}
           <p className="signup-text" onClick={clickHandler}>

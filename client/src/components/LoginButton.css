@@ -3,6 +3,7 @@ button {
   padding: 12px 12px;
   border-radius: 3px;
   cursor: pointer;
+  transition: all 0.2s;
 }
 
 .not-active {

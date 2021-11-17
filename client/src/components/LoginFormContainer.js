@@ -1,9 +1,19 @@
-import React, { useReducer, useEffect, useState } from "react";
+import React, { useReducer, useEffect, useContext, useState } from "react";
+import { useNavigate } from "react-router";
+import { userContext } from "../store/userStore";
+
 import LoginButton from "../components/LoginButton";
 import LoginInput from "../components/LoginInput";
-import getUserInfoOnLogin from "../api/getUser";
 
-const LoginFormContainer = ({ loginIsActive }) => {
+import getUserInfoOnLogin from "../api/getUser";
+import createNewUser from "../api/createUser";
+
+const LoginFormContainer = ({ loginIsActive, setLoginIsActive }) => {
+  const { state, dispatch } = useContext(userContext);
+  const [isLoading, setIsLoading] = useState(false);
+  const [loginNotSuccessful, setLoginNotSuccessful] = useState(null);
+  const navigate = useNavigate();
+
   const initialValues = {
     firstName: "",
     firstNameError: false,
@@ -52,9 +62,11 @@ const LoginFormContainer = ({ loginIsActive }) => {
 
   useEffect(() => {
     resetForm();
+    setLoginNotSuccessful(null);
   }, [loginIsActive]);
 
   function handleFormChange(e) {
+    setLoginNotSuccessful(null);
     const { name, value } = e.target;
     setFormValues({ [name]: value });
 
@@ -75,11 +87,10 @@ const LoginFormContainer = ({ loginIsActive }) => {
     }
   }
 
-  let isLoginError = false;
-
-  function submitHandler(e) {
+  async function submitHandler(e) {
     e.preventDefault();
-    isLoginError = false;
+    let isLoginError = false;
+    let signUpError = false;
 
     if (!emailAddress.includes("@")) {
       setFormValues({ emailAddressError: true });
@@ -91,17 +102,33 @@ const LoginFormContainer = ({ loginIsActive }) => {
     }
     if (firstName.length === 0) {
       setFormValues({ firstNameError: true });
+      signUpError = true;
     }
     if (lastName.length === 0) {
       setFormValues({ lastNameError: true });
+      signUpError = true;
     }
     if (confirmPassword !== password) {
       setFormValues({ confirmPasswordError: true });
+      signUpError = true;
     }
 
     if (!isLoginError && loginIsActive) {
-      console.log("We about to log in");
-      getUserInfoOnLogin(emailAddress, password);
+      setIsLoading(true);
+      const userInfo = await getUserInfoOnLogin(emailAddress, password);
+      state.user = userInfo;
+      if (state.user) {
+        navigate("/profile");
+      } else {
+        setLoginNotSuccessful(true);
+        setIsLoading(false);
+      }
+    } else if (!signUpError && !loginIsActive) {
+      console.log("Im in the else if :)");
+      setIsLoading(true);
+      await createNewUser(firstName, lastName, emailAddress, password);
+      setIsLoading(false);
+      setLoginIsActive(true);
     }
   }
 
@@ -174,8 +201,11 @@ const LoginFormContainer = ({ loginIsActive }) => {
 
       <div className="big-btn">
         <LoginButton classes={"active"}>
-          {loginIsActive ? "Login" : "Signup"}
+          {loginIsActive ? "Login" : "Signup"} {isLoading && ". . ."}
         </LoginButton>
+        {loginNotSuccessful && loginIsActive && (
+          <p className="error-message">Error: email or password incorrect</p>
+        )}
       </div>
     </form>
   );
