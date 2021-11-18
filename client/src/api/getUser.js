@@ -7,6 +7,8 @@ async function getUserInfoOnLogin(email, password) {
       password,
     });
     sessionStorage.setItem("accessToken", res.data.accessToken);
+    sessionStorage.setItem("userData", JSON.stringify(res.data.user));
+    console.log(res.data.user);
 
     return res.data.user;
   } catch (error) {

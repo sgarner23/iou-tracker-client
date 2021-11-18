@@ -3,14 +3,14 @@ import { userContext } from "./store/userStore";
 import { Navigate, useRoutes } from "react-router-dom";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
+import persistUserLogin from "./helpers/getDataFromSession";
 
 import "./App.css";
 
 function App() {
   const { state, dispatch } = useContext(userContext);
-  console.log(state.user);
-  // sessionStorage.getItem(accessToken)
-  // sessionStorage.getItem(user)
+  const userInfo = persistUserLogin();
+  state.user = userInfo;
 
   const routing = useRoutes([
     {

@@ -116,10 +116,12 @@ const LoginFormContainer = ({ loginIsActive, setLoginIsActive }) => {
     if (!isLoginError && loginIsActive) {
       setIsLoading(true);
       const userInfo = await getUserInfoOnLogin(emailAddress, password);
-      state.user = userInfo;
-      if (state.user) {
-        console.log("We gonna navigate to profile page");
-        console.log(state.user);
+
+      if (userInfo) {
+        dispatch({
+          type: "USER_LOGGED_IN",
+          value: userInfo,
+        });
         navigate("/profile");
       } else {
         setLoginNotSuccessful(true);
