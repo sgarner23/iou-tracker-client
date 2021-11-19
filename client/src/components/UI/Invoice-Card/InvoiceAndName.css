@@ -1,0 +1,24 @@
+.invoice-name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-size: 12px;
+  padding: 25px 15px 0 15px;
+}
+
+.left-container {
+  display: flex;
+}
+
+.num-sign {
+  color: #7f88c3;
+}
+
+.invoice-number {
+  font-weight: bold;
+}
+
+.customer-name {
+  color: #7f88c3;
+}
