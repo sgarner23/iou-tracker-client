@@ -25,8 +25,8 @@ const Login = () => {
 
   return (
     <div className="login-page">
-      {state.modalToDisplay === "userCreated" && <SignupModal />}
       <Card>
+        {state.modalToDisplay === "userCreated" && <SignupModal />}
         <h1>{loginIsActive ? "Login Form" : "Signup Form"}</h1>
         <div className="login-btns-container">
           <div className="btn-container" onClick={clickHandler}>

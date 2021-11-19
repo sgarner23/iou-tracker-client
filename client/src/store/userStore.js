@@ -21,6 +21,13 @@ const reducer = (state, action) => {
       };
     }
 
+    case "CLOSE_MODAL": {
+      return {
+        ...state,
+        modalToDisplay: null,
+      };
+    }
+
     default:
       return state;
   }

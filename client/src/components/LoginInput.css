@@ -18,3 +18,22 @@
 .error {
   border-color: red;
 }
+
+.loader {
+  border: 3px solid #f3f3f3; /* Light grey */
+  border-top: 3px solid #352b5d; /* Blue */
+  border-radius: 50%;
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

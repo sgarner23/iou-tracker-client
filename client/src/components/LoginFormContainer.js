@@ -128,9 +128,11 @@ const LoginFormContainer = ({ loginIsActive, setLoginIsActive }) => {
         setIsLoading(false);
       }
     } else if (!signUpError && !loginIsActive) {
-      console.log("Im in the else if :)");
       setIsLoading(true);
       await createNewUser(firstName, lastName, emailAddress, password);
+      dispatch({
+        type: "USER_CREATED",
+      });
       setIsLoading(false);
       setLoginIsActive(true);
     }
@@ -205,7 +207,8 @@ const LoginFormContainer = ({ loginIsActive, setLoginIsActive }) => {
 
       <div className="big-btn">
         <LoginButton classes={"active"}>
-          {loginIsActive ? "Login" : "Signup"} {isLoading && ". . ."}
+          {loginIsActive ? "Login" : "Signup"}{" "}
+          {isLoading && <div class="loader"></div>}
         </LoginButton>
         {loginNotSuccessful && loginIsActive && (
           <p className="error-message">Error: email or password incorrect</p>

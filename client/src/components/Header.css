@@ -1,0 +1,74 @@
+.header-container {
+  background-color: #373c53;
+  display: flex;
+  justify-content: space-between;
+}
+
+.profile-pic-container {
+  padding: 15px;
+}
+.profile-picture {
+  width: auto;
+  height: 42px;
+  border-radius: 50%;
+}
+
+.middle-header-container {
+  border-right: 1.5px solid #494e6e;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.moon-sun-container {
+  padding: 15px;
+  justify-self: flex-end;
+  cursor: pointer;
+}
+
+.moon-sun {
+  width: 20px;
+  height: 20px;
+}
+
+.header-icon-container {
+  width: 72px;
+
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.background-div {
+  height: 100%;
+  width: 30%;
+  background-color: #7c5cfb;
+}
+
+.light-dark-container {
+  position: absolute;
+  height: 76px;
+  width: 60px;
+
+  top: 0;
+}
+.dark-box {
+  background-color: #7c5cfb;
+  height: 50%;
+  border-top-right-radius: 15px;
+}
+
+.light-box {
+  background-color: #9277ff;
+  height: 50%;
+  border-bottom-right-radius: 15px;
+  border-top-left-radius: 20px;
+}
+
+.logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
