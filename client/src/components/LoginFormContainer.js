@@ -7,6 +7,7 @@ import LoginInput from "../components/LoginInput";
 
 import getUserInfoOnLogin from "../api/getUser";
 import createNewUser from "../api/createUser";
+import Loader from "./UI/Loader";
 
 const LoginFormContainer = ({ loginIsActive, setLoginIsActive }) => {
   const { state, dispatch } = useContext(userContext);
@@ -207,8 +208,7 @@ const LoginFormContainer = ({ loginIsActive, setLoginIsActive }) => {
 
       <div className="big-btn">
         <LoginButton classes={"active"}>
-          {loginIsActive ? "Login" : "Signup"}{" "}
-          {isLoading && <div class="loader"></div>}
+          {loginIsActive ? "Login" : "Signup"} {isLoading && <Loader />}
         </LoginButton>
         {loginNotSuccessful && loginIsActive && (
           <p className="error-message">Error: email or password incorrect</p>

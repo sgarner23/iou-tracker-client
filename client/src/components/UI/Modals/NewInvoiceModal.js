@@ -1,11 +1,12 @@
 import React from "react";
 import "./NewInvoiceModal.css";
 import icon_arrow_left from "../../../assets/icon_arrow_left.svg";
+import BillFrom from "../../BillFrom";
 
 function NewInvoiceModal() {
   return (
-    <div className="overlay">
-      <div className="card">
+    <div className="invoice-overlay">
+      <div className="invoice-card">
         <div className="content-container">
           <div className="go-back">
             <img
@@ -16,6 +17,7 @@ function NewInvoiceModal() {
             <p className="go-back-text">Go back</p>
           </div>
           <p className="new-invoice-text">New Invoice</p>
+          <BillFrom />
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-.overlay {
+.invoice-overlay {
   height: 100vh;
   width: 100vw;
   top: 0;
@@ -13,8 +13,8 @@
   z-index: 10;
 }
 
-.card {
-  width: 300px;
+.invoice-card {
+  width: 340px;
   height: 450px;
   background-color: #ffffff;
   border-radius: 8px;
@@ -27,6 +27,7 @@
 .content-container {
   border: 2px solid red;
   padding: 0 10px;
+  width: 100%;
 }
 
 .go-back {
@@ -36,7 +37,7 @@
   align-items: center;
   font-size: 12px;
   cursor: pointer;
-  padding-bottom: 24px;
+  padding-bottom: 20px;
 }
 
 .left-arrow {
@@ -51,4 +52,5 @@
 .new-invoice-text {
   font-size: 18px;
   font-weight: bold;
+  padding-bottom: 20px;
 }

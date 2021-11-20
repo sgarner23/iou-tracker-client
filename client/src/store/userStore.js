@@ -2,7 +2,7 @@ import React, { createContext, useReducer } from "react";
 
 const initialState = {
   user: null,
-  modalToDisplay: "NewInvoice",
+  modalToDisplay: "newInvoice",
 };
 
 const reducer = (state, action) => {
