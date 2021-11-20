@@ -2,7 +2,7 @@ import React, { createContext, useReducer } from "react";
 
 const initialState = {
   user: null,
-  modalToDisplay: null,
+  modalToDisplay: "NewInvoice",
 };
 
 const reducer = (state, action) => {
@@ -18,6 +18,13 @@ const reducer = (state, action) => {
       return {
         ...state,
         modalToDisplay: "userCreated",
+      };
+    }
+
+    case "NEW_INVOICE_MODAL": {
+      return {
+        ...state,
+        modalToDisplay: "newInvoice",
       };
     }
 

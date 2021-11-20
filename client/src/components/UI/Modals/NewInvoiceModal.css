@@ -1,0 +1,54 @@
+.overlay {
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  background: rgba(49, 49, 49, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.card {
+  width: 300px;
+  height: 450px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  display: flex;
+  justify-content: flex-start;
+  padding-top: 30px;
+  overflow: scroll;
+}
+
+.content-container {
+  border: 2px solid red;
+  padding: 0 10px;
+}
+
+.go-back {
+  display: flex;
+  width: 83px;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  cursor: pointer;
+  padding-bottom: 24px;
+}
+
+.left-arrow {
+  width: 10px;
+}
+
+.go-back-text {
+  font-weight: bold;
+  padding-top: 4px;
+}
+
+.new-invoice-text {
+  font-size: 18px;
+  font-weight: bold;
+}
