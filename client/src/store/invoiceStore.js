@@ -2,6 +2,11 @@ import React, { createContext, useReducer } from "react";
 
 const initialState = {
   paymentTermOptions: false,
+  userStreetAddress: "",
+  userCity: "",
+  userState: "",
+  userZipCode: "",
+  userCountry: "",
 };
 
 const reducer = (state, action) => {
@@ -12,6 +17,42 @@ const reducer = (state, action) => {
         paymentTermOptions: !state.paymentTermOptions,
       };
     }
+
+    case "userStreetAddress": {
+      return {
+        ...state,
+        userStreetAddress: action.value,
+      };
+    }
+
+    case "userCity": {
+      return {
+        ...state,
+        userCity: action.value,
+      };
+    }
+
+    case "userState": {
+      return {
+        ...state,
+        userState: action.value,
+      };
+    }
+
+    case "userZipCode": {
+      return {
+        ...state,
+        userZipCode: action.value,
+      };
+    }
+
+    case "userCountry": {
+      return {
+        ...state,
+        userCountry: action.value,
+      };
+    }
+
     default:
       return state;
   }

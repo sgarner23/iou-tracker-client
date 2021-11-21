@@ -1,18 +1,34 @@
-import React from "react";
+import React, { useContext } from "react";
+import { invoiceContext } from "../../../../store/invoiceStore";
 import "./BillFrom.css";
 
 function BillFrom() {
+  const { invoiceState, updateInvoice } = useContext(invoiceContext);
+
+  function formChangeHandler(e) {
+    updateInvoice({ type: e.target.name, value: e.target.value });
+    console.log(
+      invoiceState.userStreetAddress,
+      invoiceState.userCity,
+      invoiceState.userState,
+      invoiceState.userZipCode,
+      invoiceState.userCountry
+    );
+  }
+
   return (
     <React.Fragment>
       <p className="bill">Bill From</p>
       <div className="input-container">
-        <label htmlFor="street-address" className="label">
+        <label htmlFor="userStreetAddress" className="label">
           Street Address
         </label>
         <input
           type="text"
-          name="street-address"
+          name="userStreetAddress"
           className="invoice-input street-input"
+          value={invoiceState.userStreetAddress}
+          onChange={formChangeHandler}
         />
         <div className="city-state-container">
           <div className="container">
@@ -21,7 +37,9 @@ function BillFrom() {
             </label>
             <input
               type="text"
-              name="city"
+              name="userCity"
+              value={invoiceState.city}
+              onChange={formChangeHandler}
               className="invoice-input city-state-input"
             />
           </div>
@@ -31,7 +49,9 @@ function BillFrom() {
             </label>
             <input
               type="text"
-              name="state"
+              name="userState"
+              value={invoiceState.userState}
+              onChange={formChangeHandler}
               className="invoice-input city-state-input state-input"
             />
           </div>
@@ -43,7 +63,9 @@ function BillFrom() {
             </label>
             <input
               type="text"
-              name="city"
+              name="userZipCode"
+              value={invoiceState.userZipCode}
+              onChange={formChangeHandler}
               className="invoice-input city-state-input"
             />
           </div>
@@ -53,7 +75,9 @@ function BillFrom() {
             </label>
             <input
               type="text"
-              name="state"
+              name="userCountry"
+              value={invoiceState.userCountry}
+              onChange={formChangeHandler}
               className="invoice-input city-state-input state-input"
             />
           </div>
