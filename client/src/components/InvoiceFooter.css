@@ -1,0 +1,8 @@
+.invoice-footer-wrapper {
+  height: 91px;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+}

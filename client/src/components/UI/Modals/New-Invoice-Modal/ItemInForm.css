@@ -1,0 +1,46 @@
+/* .item-name-text {
+  font-size: 12px;
+  color: #7e88c3;
+} */
+
+.quanity-price-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.qty-container {
+}
+
+.item-label {
+  display: block;
+}
+
+.qty-input {
+  width: 64px;
+}
+
+.price-container {
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+}
+
+.total-container {
+  width: 120px;
+  display: flex;
+  justify-content: space-between;
+  height: 96px;
+}
+
+.total-display {
+  font-size: 12px;
+  color: #888eb0;
+  font-weight: bold;
+  padding-top: 15px;
+}
+
+.delete {
+  height: 12px;
+  align-self: center;
+}

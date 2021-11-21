@@ -4,7 +4,7 @@ import "./BillFrom.css";
 function BillFrom() {
   return (
     <React.Fragment>
-      <p className="bill-from">Bill From</p>
+      <p className="bill">Bill From</p>
       <div className="input-container">
         <label htmlFor="street-address" className="label">
           Street Address
@@ -19,7 +19,11 @@ function BillFrom() {
             <label htmlFor="city" className="label">
               City
             </label>
-            <input type="text" name="city" className="input city-state-input" />
+            <input
+              type="text"
+              name="city"
+              className="invoice-input city-state-input"
+            />
           </div>
           <div className="container">
             <label htmlFor="state" className="label state-label">
@@ -28,7 +32,7 @@ function BillFrom() {
             <input
               type="text"
               name="state"
-              className="input city-state-input state-input"
+              className="invoice-input city-state-input state-input"
             />
           </div>
         </div>
@@ -37,7 +41,11 @@ function BillFrom() {
             <label htmlFor="city" className="label">
               Zip Code
             </label>
-            <input type="text" name="city" className="input city-state-input" />
+            <input
+              type="text"
+              name="city"
+              className="invoice-input city-state-input"
+            />
           </div>
           <div className="container">
             <label htmlFor="state" className="label state-label">
@@ -46,7 +54,7 @@ function BillFrom() {
             <input
               type="text"
               name="state"
-              className="input city-state-input state-input"
+              className="invoice-input city-state-input state-input"
             />
           </div>
         </div>

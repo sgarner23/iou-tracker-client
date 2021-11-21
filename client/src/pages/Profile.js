@@ -5,7 +5,7 @@ import { userContext } from "../store/userStore";
 import FilterAddBar from "../components/FilterAddBar";
 import "./Profile.css";
 import InvoiceCard from "../components/UI/Invoice-Card/InvoiceCard";
-import NewInvoiceModal from "../components/UI/Modals/NewInvoiceModal";
+import NewInvoiceModal from "../components/UI/Modals/New-Invoice-Modal/NewInvoiceModal";
 
 function Profile() {
   const { state, dispatch } = useContext(userContext);

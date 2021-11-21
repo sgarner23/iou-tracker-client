@@ -1,9 +1,10 @@
-.bill-from {
+.bill {
   color: #7c5dfa;
   font-size: 12px;
   font-weight: bold;
   padding-bottom: 20px;
   padding-left: 2px;
+  padding-top: 15px;
 }
 
 .input-container {
@@ -15,6 +16,7 @@
 .label {
   color: #7e88c3;
   padding-bottom: 5px;
+  font-size: 12px;
 }
 
 .street-input {
@@ -30,7 +32,7 @@
   caret-color: #9b82fe;
 }
 
-.input:focus {
+.invoice-input:focus {
   outline-color: #9b82fe;
   box-shadow: 0 0 6px #9b82fe;
 }

@@ -38,3 +38,29 @@ button {
   justify-content: center;
   cursor: pointer;
 }
+
+.invoice-footer-btn {
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 50px;
+  width: 340px;
+  padding: 0 15px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 3px;
+}
+
+.draft {
+  background-color: #373c53;
+  color: #ffffff;
+  border: none;
+}
+
+.discard {
+  width: 80px;
+  background-color: #f9fafe;
+  color: #7f88c3;
+  border: none;
+}
