@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
+import { userContext } from "../store/userStore";
 import icon_arrow_down from "../assets/icon_arrow_down.svg";
 import icon_plus from "../assets/icon_plus.svg";
 import LoginButton from "./UI/LoginButton";
 import "./FilterAddBar.css";
 
 function FilterAddBar() {
+  const { state, dispatch } = useContext(userContext);
+
+  function clickNewInvoiceHandler() {
+    dispatch({ type: "NEW_INVOICE_MODAL" });
+  }
+
   return (
     <div className="main-container">
       <div className="invoice-text-container">
@@ -19,7 +26,10 @@ function FilterAddBar() {
           className="arrow-down"
         />
       </div>
-      <LoginButton classes={"active smaller-btn"}>
+      <LoginButton
+        onClick={clickNewInvoiceHandler}
+        classes={"active smaller-btn"}
+      >
         <div className="plus-circle">
           <img src={icon_plus} alt="plus icon" />
         </div>

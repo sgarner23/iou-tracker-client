@@ -2,7 +2,7 @@ import React, { createContext, useReducer } from "react";
 
 const initialState = {
   user: null,
-  modalToDisplay: "newInvoice",
+  modalToDisplay: null,
 };
 
 const reducer = (state, action) => {
@@ -42,7 +42,7 @@ const reducer = (state, action) => {
 
 export const userContext = createContext(initialState);
 
-export const Store = ({ children }) => {
+export const UserStore = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { userContext } from "../../../../store/userStore";
 import "./NewInvoiceModal.css";
 import icon_arrow_left from "../../../../assets/icon_arrow_left.svg";
 import BillFrom from "./BillFrom";
@@ -9,11 +10,16 @@ import InvoiceFooter from "../../../InvoiceFooter";
 import LoginButton from "../../LoginButton";
 
 function NewInvoiceModal() {
+  const { state, dispatch } = useContext(userContext);
+  function clickGoBack() {
+    dispatch({ type: "CLOSE_MODAL" });
+  }
+
   return (
     <div className="invoice-overlay">
       <div className="invoice-card">
         <div className="content-container">
-          <div className="go-back">
+          <div onClick={clickGoBack} className="go-back">
             <img
               src={icon_arrow_left}
               alt="left arrow"

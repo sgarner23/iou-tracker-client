@@ -3,16 +3,19 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { Store } from "./store/userStore";
+import { UserStore } from "./store/userStore";
 import { BrowserRouter } from "react-router-dom";
+import { InvoiceStore } from "./store/invoiceStore";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Store>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </Store>
+    <UserStore>
+      <InvoiceStore>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </InvoiceStore>
+    </UserStore>
   </React.StrictMode>,
   document.getElementById("root")
 );

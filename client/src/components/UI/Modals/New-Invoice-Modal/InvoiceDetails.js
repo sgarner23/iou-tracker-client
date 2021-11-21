@@ -1,9 +1,16 @@
-import React from "react";
-
+import React, { useContext } from "react";
+import { invoiceContext } from "../../../../store/invoiceStore";
 import icon_arrow_down from "../../../../assets/icon_arrow_down.svg";
 import "./InvoiceDetails.css";
+import PaymentTerms from "./PaymentTerms";
 
 function InvoiceDetails() {
+  const { invoiceState, updateInvoice } = useContext(invoiceContext);
+
+  function clickPaymentTermsHandler() {
+    updateInvoice({ type: "SELECT_PAYMENT_TERMS" });
+  }
+
   return (
     <React.Fragment>
       <div className="input-container invoice-detail-container">
@@ -27,22 +34,10 @@ function InvoiceDetails() {
             src={icon_arrow_down}
             alt="down-arrow"
             className="invoice-down-arrow"
+            onClick={clickPaymentTermsHandler}
           />
         </div>
-        <div className="payment-terms-box">
-          <div className="net-box">
-            <p className="net-text">Net 1 Day</p>
-          </div>
-          <div className="net-box">
-            <p className="net-text">Net 7 Days</p>
-          </div>
-          <div className="net-box">
-            <p className="net-text">Net 14 Days</p>
-          </div>
-          <div className="net-box">
-            <p className="net-text">Net 30 Days</p>
-          </div>
-        </div>
+        {invoiceState.paymentTermOptions && <PaymentTerms />}
         <label htmlFor="project-description" className="label bill-to-label">
           Project Description
         </label>
