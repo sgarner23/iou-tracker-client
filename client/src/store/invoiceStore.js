@@ -7,6 +7,12 @@ const initialState = {
   userState: "",
   userZipCode: "",
   userCountry: "",
+  clientName: "",
+  clientEmail: "",
+  clientStreetAddress: "",
+  clientCity: "",
+  clientState: "",
+  clientZipCode: "",
 };
 
 const reducer = (state, action) => {
@@ -50,6 +56,48 @@ const reducer = (state, action) => {
       return {
         ...state,
         userCountry: action.value,
+      };
+    }
+
+    case "clientName": {
+      return {
+        ...state,
+        clientName: action.value,
+      };
+    }
+
+    case "clientEmail": {
+      return {
+        ...state,
+        clientEmail: action.value,
+      };
+    }
+
+    case "clientStreetAddress": {
+      return {
+        ...state,
+        clientStreetAddress: action.value,
+      };
+    }
+
+    case "clientCity": {
+      return {
+        ...state,
+        clientCity: action.value,
+      };
+    }
+
+    case "clientState": {
+      return {
+        ...state,
+        clientState: action.value,
+      };
+    }
+
+    case "clientZipCode": {
+      return {
+        ...state,
+        clientZipCode: action.value,
       };
     }
 

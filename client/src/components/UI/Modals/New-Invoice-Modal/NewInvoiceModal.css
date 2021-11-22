@@ -81,13 +81,12 @@
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 1) 0%,
-    rgba(231, 231, 231, 1) 53%
+    rgba(231, 231, 231, 0.4234068627450981) 50%
   );
-  height: 60px;
+  height: 55px;
   width: 350px;
   position: absolute;
   left: -10px;
-  padding-top: 10px;
 }
 
 .filler {

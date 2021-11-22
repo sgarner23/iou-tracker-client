@@ -7,13 +7,6 @@ function BillFrom() {
 
   function formChangeHandler(e) {
     updateInvoice({ type: e.target.name, value: e.target.value });
-    console.log(
-      invoiceState.userStreetAddress,
-      invoiceState.userCity,
-      invoiceState.userState,
-      invoiceState.userZipCode,
-      invoiceState.userCountry
-    );
   }
 
   return (
