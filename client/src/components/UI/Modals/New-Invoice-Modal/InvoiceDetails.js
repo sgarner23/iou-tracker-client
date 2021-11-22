@@ -13,7 +13,6 @@ function InvoiceDetails() {
 
   function formChangeHandler(e) {
     updateInvoice({ type: e.target.name, value: e.target.value });
-    console.log(invoiceState.invoiceDate);
   }
 
   return (
@@ -50,7 +49,9 @@ function InvoiceDetails() {
         <input
           type="text"
           className="invoice-input bill-to-input date-input"
-          name="project-description"
+          name="projectDescription"
+          onChange={formChangeHandler}
+          value={invoiceState.projectDescription}
         />
       </div>
     </React.Fragment>

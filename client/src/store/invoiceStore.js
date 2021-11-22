@@ -19,6 +19,7 @@ const initialState = {
     displayMessage: "",
     numOfDays: 0,
   },
+  projectDescription: "",
 };
 
 const reducer = (state, action) => {
@@ -128,6 +129,13 @@ const reducer = (state, action) => {
           displayMessage: action.displayMessage,
           numOfDays: action.numOfDays,
         },
+      };
+    }
+
+    case "projectDescription": {
+      return {
+        ...state,
+        projectDescription: action.value,
       };
     }
 

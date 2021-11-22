@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
+import { lineItemContext } from "../../../../store/lineItemStore";
 import "./ItemInForm.css";
 import icon_delete from "../../../../assets/icon_delete.svg";
 
 function ItemInForm() {
+  const { lineItemState, updateLineItem } = useContext(lineItemContext);
+
+  function formChangeHandler(e) {
+    updateLineItem({ type: e.target.name, value: e.target.value });
+    console.log(lineItemState.quanity);
+  }
   return (
     <div className="input-container">
       <label htmlFor="item-name" className="label bill-to-label">
@@ -11,7 +18,9 @@ function ItemInForm() {
       <input
         type="text"
         className="invoice-input bill-to-input"
-        name="item-name"
+        name="itemName"
+        value={lineItemState.itemName}
+        onChange={formChangeHandler}
       />
       <div className="quanity-price-container">
         <div className="qty-container">
@@ -23,6 +32,8 @@ function ItemInForm() {
             min="0"
             className="invoice-input bill-to-input qty-input"
             name="quanity"
+            value={lineItemState.quanity}
+            onChange={formChangeHandler}
           />
         </div>
         <div className="price-container">
@@ -32,13 +43,15 @@ function ItemInForm() {
           <input
             type="text"
             className="invoice-input bill-to-input"
-            name="price"
+            name="unitPrice"
+            value={lineItemState.unitPrice}
+            onChange={formChangeHandler}
           />
         </div>
         <div className="total-container">
           <div className="total-container-2">
             <p className="label bill-to-label">Total</p>
-            <div className="total-display">156.00</div>
+            <div className="total-display">{lineItemState.subtotal}</div>
           </div>
           <img src={icon_delete} alt="trash can" className="delete" />
         </div>

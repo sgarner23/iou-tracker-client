@@ -8,6 +8,7 @@ const initialState = {
 const reducer = (state, action) => {
   switch (action.type) {
     case "USER_LOGGED_IN": {
+      console.log("user logged in");
       return {
         ...state,
         user: action.value,
