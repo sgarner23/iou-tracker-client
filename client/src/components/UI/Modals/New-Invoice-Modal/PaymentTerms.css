@@ -14,4 +14,19 @@
   font-size: 12px;
   font-weight: bold;
   color: #0c0e16;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.net-text:active {
+  color: green;
+}
+
+.net-text:hover {
+  transform: scale(1.02);
+  text-shadow: 2px 3px 5px rgba(124, 92, 251, 0.4);
+}
+
+.purple-text {
+  color: #7c5cfb;
 }

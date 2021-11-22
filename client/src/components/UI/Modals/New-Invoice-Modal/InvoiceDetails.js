@@ -11,6 +11,11 @@ function InvoiceDetails() {
     updateInvoice({ type: "SELECT_PAYMENT_TERMS" });
   }
 
+  function formChangeHandler(e) {
+    updateInvoice({ type: e.target.name, value: e.target.value });
+    console.log(invoiceState.invoiceDate);
+  }
+
   return (
     <React.Fragment>
       <div className="input-container invoice-detail-container">
@@ -20,7 +25,8 @@ function InvoiceDetails() {
         <input
           type="date"
           className="invoice-input bill-to-input date-input"
-          name="client-name"
+          name="invoiceDate"
+          onChange={formChangeHandler}
         />
         <label htmlFor="payment-terms" className="label bill-to-label">
           Payment Terms
@@ -29,7 +35,7 @@ function InvoiceDetails() {
           className="invoice-input bill-to-input date-input select-dropdown"
           name="payment-terms"
         >
-          Net 30 days
+          {invoiceState.paymentTerms.displayMessage}
           <img
             src={icon_arrow_down}
             alt="down-arrow"

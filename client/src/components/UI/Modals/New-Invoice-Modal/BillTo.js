@@ -7,7 +7,7 @@ function BillTo() {
 
   function formChangeHandler(e) {
     updateInvoice({ type: e.target.name, value: e.target.value });
-    console.log(invoiceState.clientZipCode);
+    console.log(invoiceState.clientCountry);
   }
 
   return (
@@ -90,6 +90,8 @@ function BillTo() {
             <input
               type="text"
               name="clientCountry"
+              value={invoiceState.clientCountry}
+              onChange={formChangeHandler}
               className="invoice-input city-state-input state-input"
             />
           </div>

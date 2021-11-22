@@ -13,6 +13,12 @@ const initialState = {
   clientCity: "",
   clientState: "",
   clientZipCode: "",
+  clientCountry: "",
+  invoiceDate: "",
+  paymentTerms: {
+    displayMessage: "",
+    numOfDays: 0,
+  },
 };
 
 const reducer = (state, action) => {
@@ -98,6 +104,30 @@ const reducer = (state, action) => {
       return {
         ...state,
         clientZipCode: action.value,
+      };
+    }
+
+    case "clientCountry": {
+      return {
+        ...state,
+        clientCountry: action.value,
+      };
+    }
+
+    case "invoiceDate": {
+      return {
+        ...state,
+        invoiceDate: action.value,
+      };
+    }
+
+    case "UPDATE_PAYMENT_TERMS": {
+      return {
+        ...state,
+        paymentTerms: {
+          displayMessage: action.displayMessage,
+          numOfDays: action.numOfDays,
+        },
       };
     }
 
