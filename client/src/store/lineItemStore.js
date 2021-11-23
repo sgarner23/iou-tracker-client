@@ -1,19 +1,26 @@
 import React, { createContext, useReducer } from "react";
 
-const initialState = {
-  quanity: "",
-  unitPrice: "",
-  itemName: "",
-  subtotal: "",
-};
+const initialState = [
+  {
+    quanity: "",
+    unitPrice: "",
+    itemName: "",
+    subtotal: "",
+  },
+  {
+    quanity: "",
+    unitPrice: "",
+    itemName: "",
+    subtotal: "",
+  },
+];
 
 const reducer = (state, action) => {
   switch (action.type) {
     case "itemName": {
-      return {
-        ...state,
-        itemName: action.value,
-      };
+      console.log(state[action.index]);
+      console.log(state[0]);
+      return [...state, (state[action.index].itemName = action.value)];
     }
 
     case "quanity": {

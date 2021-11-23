@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { userContext } from "../../../../store/userStore";
+import { lineItemContext } from "../../../../store/lineItemStore";
 import "./NewInvoiceModal.css";
 import icon_arrow_left from "../../../../assets/icon_arrow_left.svg";
 import BillFrom from "./BillFrom";
@@ -11,9 +12,24 @@ import LoginButton from "../../LoginButton";
 
 function NewInvoiceModal() {
   const { state, dispatch } = useContext(userContext);
+  const { lineItemState, updateLineItem } = useContext(lineItemContext);
+
   function clickGoBack() {
     dispatch({ type: "CLOSE_MODAL" });
   }
+
+  const listOfLineItems = lineItemState.map((line, index) => {
+    return (
+      <ItemInForm
+        index={index}
+        key={index}
+        quanity={line.quanity}
+        unitPrice={line.unitPrice}
+        itemName={line.itemName}
+        subtotal={line.subtotal}
+      />
+    );
+  });
 
   return (
     <div className="invoice-overlay">
@@ -32,7 +48,7 @@ function NewInvoiceModal() {
           <BillTo />
           <InvoiceDetails />
           <p className="item-list-header">Item List</p>
-          <ItemInForm />
+          {listOfLineItems}
           <button className="add-item">+ Add New Item </button>
           <div className="gradient"></div>
           <div className="filler"></div>
