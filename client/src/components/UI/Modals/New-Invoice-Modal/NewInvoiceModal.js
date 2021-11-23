@@ -18,17 +18,12 @@ function NewInvoiceModal() {
     dispatch({ type: "CLOSE_MODAL" });
   }
 
-  const listOfLineItems = lineItemState.map((line, index) => {
-    return (
-      <ItemInForm
-        index={index}
-        key={index}
-        quanity={line.quanity}
-        unitPrice={line.unitPrice}
-        itemName={line.itemName}
-        subtotal={line.subtotal}
-      />
-    );
+  function newLineClickHandler() {
+    updateLineItem({ type: "ADD_NEW_LINE" });
+  }
+
+  const listOfLineItems = lineItemState.lineItems.map((line, index) => {
+    return <ItemInForm index={index} key={index} />;
   });
 
   return (
@@ -49,7 +44,9 @@ function NewInvoiceModal() {
           <InvoiceDetails />
           <p className="item-list-header">Item List</p>
           {listOfLineItems}
-          <button className="add-item">+ Add New Item </button>
+          <button onClick={newLineClickHandler} className="add-item">
+            + Add New Item{" "}
+          </button>
           <div className="gradient"></div>
           <div className="filler"></div>
           <InvoiceFooter>

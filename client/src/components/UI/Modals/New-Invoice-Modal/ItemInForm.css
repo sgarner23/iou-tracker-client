@@ -43,4 +43,5 @@
 .delete {
   height: 12px;
   align-self: center;
+  cursor: pointer;
 }

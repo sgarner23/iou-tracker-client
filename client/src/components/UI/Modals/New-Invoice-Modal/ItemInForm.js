@@ -3,12 +3,24 @@ import { lineItemContext } from "../../../../store/lineItemStore";
 import "./ItemInForm.css";
 import icon_delete from "../../../../assets/icon_delete.svg";
 
-function ItemInForm({ itemName, quanity, unitPrice, subtotal, index }) {
+function ItemInForm({ index }) {
   const { lineItemState, updateLineItem } = useContext(lineItemContext);
 
+  console.log(lineItemState);
+
   function formChangeHandler(e) {
-    updateLineItem({ type: e.target.name, index, value: e.target.value });
-    console.log(lineItemState.quanity);
+    updateLineItem({
+      type: e.target.name,
+      value: e.target.value,
+      index,
+    });
+  }
+  function deleteHandler() {
+    console.log("we are here");
+    updateLineItem({
+      type: "DELETE_LINE",
+      index,
+    });
   }
   return (
     <div className="input-container">
@@ -19,7 +31,7 @@ function ItemInForm({ itemName, quanity, unitPrice, subtotal, index }) {
         type="text"
         className="invoice-input bill-to-input"
         name="itemName"
-        value={lineItemState[index].itemName}
+        value={lineItemState.lineItems[index].itemName}
         onChange={formChangeHandler}
       />
       <div className="quanity-price-container">
@@ -32,7 +44,7 @@ function ItemInForm({ itemName, quanity, unitPrice, subtotal, index }) {
             min="0"
             className="invoice-input bill-to-input qty-input"
             name="quanity"
-            value={lineItemState[index].quanity}
+            value={lineItemState.lineItems[index].quanity}
             onChange={formChangeHandler}
           />
         </div>
@@ -44,16 +56,23 @@ function ItemInForm({ itemName, quanity, unitPrice, subtotal, index }) {
             type="text"
             className="invoice-input bill-to-input"
             name="unitPrice"
-            value={lineItemState[index].unitPrice}
+            value={lineItemState.lineItems[index].unitPrice}
             onChange={formChangeHandler}
           />
         </div>
         <div className="total-container">
           <div className="total-container-2">
             <p className="label bill-to-label">Total</p>
-            <div className="total-display">{lineItemState[index].subtotal}</div>
+            <div className="total-display">
+              {lineItemState.lineItems[index].subtotal}
+            </div>
           </div>
-          <img src={icon_delete} alt="trash can" className="delete" />
+          <img
+            src={icon_delete}
+            alt="trash can"
+            onClick={deleteHandler}
+            className="delete"
+          />
         </div>
       </div>
     </div>
