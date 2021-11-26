@@ -1,16 +1,16 @@
 import React from "react";
 import "./DateStatusAndAmount.css";
 
-function DateStatusAndAmount() {
+function DateStatusAndAmount({ dueDate, total, invoiceStatus }) {
   return (
     <div className="date-status-amount">
       <div className="date-amount-container">
-        <p className="date-due">Due 19 Aug 2021</p>
-        <p className="amount">$1,800.99</p>
+        <p className="date-due">{`Due ${dueDate}`}</p>
+        <p className="amount">{`$${total.toFixed(2)}`}</p>
       </div>
       <div className="status-container">
         <div className="circle-icon"></div>
-        <p className="status-text">Paid</p>
+        <p className="status-text">{invoiceStatus}</p>
       </div>
     </div>
   );

@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
+import { userContext } from "../../../store/userStore";
 import "./InvoiceAndName.css";
 
-function InvoiceAndName() {
+function InvoiceAndName({ clientName }) {
+  const { state, dispatch } = useContext(userContext);
   return (
     <div className="invoice-name">
       <div className="left-container">
         <p className="num-sign">#</p>
         <p className="invoice-number">RT3080</p>
       </div>
-      <p className="customer-name">Brent Freeman</p>
+      <p className="customer-name">{clientName}</p>
     </div>
   );
 }

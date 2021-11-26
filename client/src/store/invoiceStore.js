@@ -15,7 +15,7 @@ const initialState = {
   clientZipCode: "",
   clientCountry: "",
   invoiceDate: "",
-  invoiceStatus: "",
+  invoiceStatus: "Pending",
   displayMessage: "",
   numOfDays: "",
   projectDescription: "",
