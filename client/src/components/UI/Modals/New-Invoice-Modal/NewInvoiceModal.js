@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { userContext } from "../../../../store/userStore";
 import { lineItemContext } from "../../../../store/lineItemStore";
+import { invoiceContext } from "../../../../store/invoiceStore";
 import "./NewInvoiceModal.css";
 import icon_arrow_left from "../../../../assets/icon_arrow_left.svg";
 import BillFrom from "./BillFrom";
@@ -9,10 +10,12 @@ import InvoiceDetails from "./InvoiceDetails";
 import ItemInForm from "./ItemInForm";
 import InvoiceFooter from "../../../InvoiceFooter";
 import LoginButton from "../../LoginButton";
+import createNewInvoice from "../../../../api/createInvoice";
 
 function NewInvoiceModal() {
   const { state, dispatch } = useContext(userContext);
   const { lineItemState, updateLineItem } = useContext(lineItemContext);
+  const { invoiceState, updateInvoice } = useContext(invoiceContext);
 
   function clickGoBack() {
     dispatch({ type: "CLOSE_MODAL" });
@@ -25,6 +28,11 @@ function NewInvoiceModal() {
   const listOfLineItems = lineItemState.lineItems.map((line, index) => {
     return <ItemInForm index={index} key={index} />;
   });
+
+  function submitInvoice() {
+    console.log("we are submitting some stuff");
+    createNewInvoice(invoiceState, lineItemState);
+  }
 
   return (
     <div className="invoice-overlay">
@@ -56,7 +64,10 @@ function NewInvoiceModal() {
             <LoginButton classes={"invoice-footer-btn draft"}>
               Save as Draft
             </LoginButton>
-            <LoginButton classes={"active invoice-footer-btn"}>
+            <LoginButton
+              onClick={submitInvoice}
+              classes={"active invoice-footer-btn"}
+            >
               Save & Send
             </LoginButton>
           </InvoiceFooter>

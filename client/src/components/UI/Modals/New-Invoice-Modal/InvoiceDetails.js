@@ -34,7 +34,7 @@ function InvoiceDetails() {
           className="invoice-input bill-to-input date-input select-dropdown"
           name="payment-terms"
         >
-          {invoiceState.paymentTerms.displayMessage}
+          {invoiceState.displayMessage}
           <img
             src={icon_arrow_down}
             alt="down-arrow"

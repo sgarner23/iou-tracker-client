@@ -10,6 +10,7 @@ const initialState = {
     },
   ],
 };
+
 const reducer = (state, action) => {
   switch (action.type) {
     case "itemName": {
@@ -41,6 +42,7 @@ const reducer = (state, action) => {
         +arrOfLineItems[action.index].quanity *
         +arrOfLineItems[action.index].unitPrice;
       arrOfLineItems[action.index].subtotal = total.toFixed(2);
+
       return {
         ...state,
         arrOfLineItems,

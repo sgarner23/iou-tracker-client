@@ -15,10 +15,9 @@ const initialState = {
   clientZipCode: "",
   clientCountry: "",
   invoiceDate: "",
-  paymentTerms: {
-    displayMessage: "",
-    numOfDays: 0,
-  },
+  invoiceStatus: "",
+  displayMessage: "",
+  numOfDays: "",
   projectDescription: "",
 };
 
@@ -116,6 +115,7 @@ const reducer = (state, action) => {
     }
 
     case "invoiceDate": {
+      console.log(action.value);
       return {
         ...state,
         invoiceDate: action.value,
@@ -125,10 +125,8 @@ const reducer = (state, action) => {
     case "UPDATE_PAYMENT_TERMS": {
       return {
         ...state,
-        paymentTerms: {
-          displayMessage: action.displayMessage,
-          numOfDays: action.numOfDays,
-        },
+        displayMessage: action.displayMessage,
+        numOfDays: action.numOfDays,
       };
     }
 

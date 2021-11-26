@@ -6,8 +6,6 @@ import icon_delete from "../../../../assets/icon_delete.svg";
 function ItemInForm({ index }) {
   const { lineItemState, updateLineItem } = useContext(lineItemContext);
 
-  console.log(lineItemState);
-
   function formChangeHandler(e) {
     updateLineItem({
       type: e.target.name,
@@ -16,7 +14,6 @@ function ItemInForm({ index }) {
     });
   }
   function deleteHandler() {
-    console.log("we are here");
     updateLineItem({
       type: "DELETE_LINE",
       index,

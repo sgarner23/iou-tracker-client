@@ -1,39 +1,80 @@
+function calculatePaymentDate(numOfDays, orderDate) {
+  const invoiceDate = new Date(orderDate);
+  invoiceDate.setDate(invoiceDate.getDate() + +numOfDays);
+  let dateMiliSecs = Date.parse(invoiceDate);
+  let formattedDate = new Date(dateMiliSecs).toDateString();
+  let dateArr = formattedDate.split(" ");
+  const newDateArr = [dateArr[2], dateArr[1], dateArr[3]];
+  return newDateArr.join(" ");
+}
+
+function calculateTotal(lineItems) {
+  let total = 0;
+  for (let i = 0; i < lineItems.length; i++) {
+    total += +lineItems[i].subtotal;
+  }
+
+  return total.toFixed(2);
+}
+
 async function addNewInvoice(req, res) {
   try {
     const db = req.app.get("db");
     const {
-      isPaid,
-      projectType,
-      orderDate,
-      paymentDate,
-      subtotal,
-      clientFirstName,
-      clientLastName,
-      clientCompanyName,
+      userStreetAddress,
+      userCity,
+      userState,
+      userZipCode,
+      userCountry,
+      clientName,
+      clientEmail,
       clientStreetAddress,
       clientCity,
       clientState,
-      clientZip,
+      clientZipCode,
+      clientCountry,
+      invoiceDate,
+      numOfDays,
+      projectDescription,
+      invoiceStatus,
+      lineItems,
     } = req.body;
     const { userID } = req;
 
-    await db.invoice.save({
-      is_paid: isPaid,
-      project_type: projectType,
-      order_date: orderDate,
-      payment_date: paymentDate,
-      subtotal,
+    const invoiceTotal = calculateTotal(lineItems);
+
+    const newInvoice = await db.invoice.save({
+      project_type: projectDescription,
+      is_paid: invoiceStatus,
+      order_date: invoiceDate,
+      payment_date: calculatePaymentDate(numOfDays, invoiceDate),
+      subtotal: invoiceTotal,
       user_id: userID,
-      client_first_name: clientFirstName,
-      client_last_name: clientLastName,
-      client_company_name: clientCompanyName,
+      user_street_address: userStreetAddress,
+      user_city: userCity,
+      user_state: userState,
+      user_zip: userZipCode,
+      user_country: userCountry,
+      client_name: clientName,
+      client_email: clientEmail,
+      client_country: clientCountry,
       client_street_address: clientStreetAddress,
       client_city: clientCity,
       client_state: clientState,
-      client_zip: clientZip,
+      client_zip: clientZipCode,
     });
 
-    res.status(200).send("Invoice created successfully");
+    for (let i = 0; i < lineItems.length; i++) {
+      const newLineItem = await db.line_items.save({
+        invoice_id: newInvoice.id,
+        quantity: lineItems[i].quantity,
+        unit_price: lineItems[i].unitPrice,
+        item_name: lineItems[i].itemName,
+        subtotal: lineItems[i].subtotal,
+      });
+    }
+
+    res.status(200).send({ newInvoice });
   } catch (error) {
     console.log(error);
     res.status(500).send("Error creating invoice");

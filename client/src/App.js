@@ -11,7 +11,7 @@ function App() {
   const { state, dispatch } = useContext(userContext);
   const userInfo = persistUserLogin();
   state.user = userInfo;
-
+  console.log(state);
   const routing = useRoutes([
     {
       path: "/",
