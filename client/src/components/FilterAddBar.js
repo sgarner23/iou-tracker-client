@@ -3,6 +3,7 @@ import { userContext } from "../store/userStore";
 import icon_arrow_down from "../assets/icon_arrow_down.svg";
 import icon_plus from "../assets/icon_plus.svg";
 import LoginButton from "./UI/LoginButton";
+import Loader from "./UI/Loader";
 import "./FilterAddBar.css";
 
 function FilterAddBar() {
@@ -16,7 +17,11 @@ function FilterAddBar() {
     <div className="main-container">
       <div className="invoice-text-container">
         <p className="invoice-header">Invoices</p>
-        <p className="invoice-text">7 invoices</p>
+        <p className="invoice-text">
+          {state.numOfUserInvoices
+            ? `${state.numOfUserInvoices} invoices`
+            : "Loading..."}
+        </p>
       </div>
       <div className="dropdown-container">
         <p className="filter-text">Filter</p>

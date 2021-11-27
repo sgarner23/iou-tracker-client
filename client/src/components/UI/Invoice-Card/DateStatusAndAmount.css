@@ -18,7 +18,6 @@
 }
 
 .status-container {
-  background-color: #f3fdfa;
   width: 104px;
   height: 40px;
   display: flex;
@@ -29,12 +28,34 @@
 .circle-icon {
   height: 12px;
   width: 12px;
-  background-color: #33d69f;
   border-radius: 50%;
   margin-right: 10px;
 }
 
 .status-text {
   font-weight: bold;
+}
+
+.Paid-container {
+  background-color: #f3fdfa;
+}
+
+.Paid-circle {
+  background-color: #33d69f;
+}
+
+.Paid-text {
   color: #33d69f;
+}
+
+.Pending-container {
+  background-color: #fff9f0;
+}
+
+.Pending-circle {
+  background-color: #ff8f00;
+}
+
+.Pending-text {
+  color: #ff8f00;
 }

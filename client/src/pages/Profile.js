@@ -18,9 +18,8 @@ function Profile() {
   useEffect(() => {
     const allInvoices = getUserInvoices();
     allInvoices.then((res) => {
-      console.log(res.userInvoices);
-      console.log(res.userInvoices.length);
       dispatch({ type: "USERS_INVOICES", value: res.userInvoices });
+      dispatch({ type: "NUM_OF_INVOICES", value: res.userInvoices.length });
       res.userInvoices.length === 0
         ? setNoInvoices(true)
         : setNoInvoices(false);
@@ -29,6 +28,7 @@ function Profile() {
           return (
             <InvoiceCard
               key={index}
+              number={invoice.id}
               invoiceStatus={invoice.is_paid}
               dueDate={invoice.payment_date}
               total={invoice.subtotal}
@@ -38,7 +38,7 @@ function Profile() {
         })
       );
     });
-  }, []);
+  }, [state.modalToDisplay]);
 
   return (
     <div className="profile-container">

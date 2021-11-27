@@ -4,11 +4,11 @@ import DateStatusAndAmount from "./DateStatusAndAmount";
 import InvoiceAndName from "./InvoiceAndName";
 import "./InvoiceCard.css";
 
-function InvoiceCard({ invoiceStatus, dueDate, total, clientName }) {
+function InvoiceCard({ number, invoiceStatus, dueDate, total, clientName }) {
   const { state, dispatch } = useContext(userContext);
   return (
     <div className="card-container">
-      <InvoiceAndName clientName={clientName} />
+      <InvoiceAndName clientName={clientName} number={number} />
       <DateStatusAndAmount
         dueDate={dueDate}
         total={total}

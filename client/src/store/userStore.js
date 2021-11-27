@@ -4,6 +4,7 @@ const initialState = {
   user: null,
   usersInvoices: null,
   modalToDisplay: null,
+  numOfUserInvoices: null,
 };
 
 const reducer = (state, action) => {
@@ -41,6 +42,13 @@ const reducer = (state, action) => {
       return {
         ...state,
         modalToDisplay: null,
+      };
+    }
+
+    case "NUM_OF_INVOICES": {
+      return {
+        ...state,
+        numOfUserInvoices: action.value,
       };
     }
 

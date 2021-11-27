@@ -11,6 +11,7 @@ import ItemInForm from "./ItemInForm";
 import InvoiceFooter from "../../../InvoiceFooter";
 import LoginButton from "../../LoginButton";
 import createNewInvoice from "../../../../api/createInvoice";
+import getUserInvoices from "../../../../api/getInvoices";
 
 function NewInvoiceModal() {
   const { state, dispatch } = useContext(userContext);
@@ -30,8 +31,9 @@ function NewInvoiceModal() {
   });
 
   function submitInvoice() {
-    console.log("we are submitting some stuff");
     createNewInvoice(invoiceState, lineItemState);
+
+    dispatch({ type: "CLOSE_MODAL" });
   }
 
   return (

@@ -5,9 +5,19 @@ async function getInvoices(req, res) {
     const { userID } = req;
     console.log("User ID: ", userID);
 
-    const invoices = await db.invoice.find({
-      user_id: userID,
-    });
+    let invoices = await db.invoice.find(
+      {
+        user_id: userID,
+      },
+      {
+        order: [
+          {
+            field: "id",
+            direction: "desc",
+          },
+        ],
+      }
+    );
 
     res.status(200).send({ userInvoices: invoices });
   } catch (error) {
