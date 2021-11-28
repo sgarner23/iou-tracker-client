@@ -10,11 +10,13 @@ const authAxios = axios.create({
   },
 });
 
-async function createNewInvoice(invoiceState, lineItemState) {
+async function createNewInvoice(invoiceState, lineItemState, invoiceStatus) {
+  console.log(invoiceStatus);
   try {
     const res = await authAxios.post("http://localhost:4082/api/invoice", {
       ...invoiceState,
       ...lineItemState,
+      invoiceStatus,
     });
     console.log(res.data);
   } catch (error) {

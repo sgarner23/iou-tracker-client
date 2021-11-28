@@ -9,4 +9,62 @@
   box-shadow: 0 3px 13px rgba(35, 34, 34, 0.2);
   border-radius: 7px;
   margin: 10px 0;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.left {
+  animation: moveInLeft 0.8s ease-out;
+}
+
+.right {
+  animation: moveInRight 0.8s ease-out;
+}
+
+.card-container:hover {
+  transform: scale(1.1);
+}
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+
+  80% {
+    transform: translateX(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+
+  80% {
+    transform: translateX(-10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
 }

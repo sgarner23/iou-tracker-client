@@ -59,6 +59,7 @@ const reducer = (state, action) => {
           subtotal: "",
         },
       ];
+
       return {
         ...state,
         lineItems: updatedLineItems,
@@ -72,6 +73,10 @@ const reducer = (state, action) => {
         ...state,
         lineItems: updatedLineItems,
       };
+    }
+
+    case "RESET": {
+      return initialState;
     }
 
     default:

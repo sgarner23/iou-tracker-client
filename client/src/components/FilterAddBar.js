@@ -3,25 +3,31 @@ import { userContext } from "../store/userStore";
 import icon_arrow_down from "../assets/icon_arrow_down.svg";
 import icon_plus from "../assets/icon_plus.svg";
 import LoginButton from "./UI/LoginButton";
-import Loader from "./UI/Loader";
 import "./FilterAddBar.css";
 
-function FilterAddBar() {
+function FilterAddBar({ loading }) {
   const { state, dispatch } = useContext(userContext);
 
   function clickNewInvoiceHandler() {
     dispatch({ type: "NEW_INVOICE_MODAL" });
   }
 
+  const numOfInvoices = () => {
+    console.log("In the func");
+    if (loading) {
+      return <p>Loading...</p>;
+    } else if (!loading && state.numOfUserInvoices) {
+      return <p>{state.numOfUserInvoices} invoices</p>;
+    } else {
+      return <p>No invoices</p>;
+    }
+  };
+
   return (
     <div className="main-container">
       <div className="invoice-text-container">
         <p className="invoice-header">Invoices</p>
-        <p className="invoice-text">
-          {state.numOfUserInvoices
-            ? `${state.numOfUserInvoices} invoices`
-            : "Loading..."}
-        </p>
+        <div className="invoice-text">{numOfInvoices()}</div>
       </div>
       <div className="dropdown-container">
         <p className="filter-text">Filter</p>

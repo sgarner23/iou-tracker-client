@@ -13,38 +13,44 @@ import { lineItemContext } from "../store/lineItemStore";
 function Profile() {
   const { state, dispatch } = useContext(userContext);
   const [noInvoices, setNoInvoices] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [invoiceListState, setInvoiceListState] = useState([]);
 
   useEffect(() => {
     const allInvoices = getUserInvoices();
     allInvoices.then((res) => {
-      dispatch({ type: "USERS_INVOICES", value: res.userInvoices });
-      dispatch({ type: "NUM_OF_INVOICES", value: res.userInvoices.length });
-      res.userInvoices.length === 0
-        ? setNoInvoices(true)
-        : setNoInvoices(false);
-      setInvoiceListState(
-        res.userInvoices.map((invoice, index) => {
-          return (
-            <InvoiceCard
-              key={index}
-              number={invoice.id}
-              invoiceStatus={invoice.is_paid}
-              dueDate={invoice.payment_date}
-              total={invoice.subtotal}
-              clientName={invoice.client_name}
-            />
-          );
-        })
-      );
+      if (res.userInvoices.length > 0) {
+        console.log("in the if");
+        dispatch({ type: "USERS_INVOICES", value: res.userInvoices });
+        dispatch({ type: "NUM_OF_INVOICES", value: res.userInvoices.length });
+        setNoInvoices(false);
+        setInvoiceListState(
+          res.userInvoices.map((invoice, index) => {
+            return (
+              <InvoiceCard
+                key={index}
+                classes={index % 2 === 0 ? "left" : "right"}
+                number={invoice.id}
+                invoiceStatus={invoice.is_paid}
+                dueDate={invoice.payment_date}
+                total={invoice.subtotal}
+                clientName={invoice.client_name}
+              />
+            );
+          })
+        );
+      } else {
+        setNoInvoices(true);
+      }
     });
+    setLoading(false);
   }, [state.modalToDisplay]);
 
   return (
     <div className="profile-container">
       {state.modalToDisplay && <NewInvoiceModal />}
       <Header />
-      <FilterAddBar />
+      <FilterAddBar loading={loading} />
       {noInvoices ? (
         <div className="image-wrapper">
           <img src={illustration_empty} alt="no invoices image" />
@@ -58,7 +64,7 @@ function Profile() {
       ) : invoiceListState ? (
         invoiceListState
       ) : (
-        "Poop!"
+        "Loading..."
       )}
     </div>
   );

@@ -59,3 +59,15 @@
 .Pending-text {
   color: #ff8f00;
 }
+
+.Draft-container {
+  background-color: #f4f4f5;
+}
+
+.Draft-circle {
+  background-color: #373c53;
+}
+
+.Draft-text {
+  color: #373c53;
+}

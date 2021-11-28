@@ -30,10 +30,15 @@ function NewInvoiceModal() {
     return <ItemInForm index={index} key={index} />;
   });
 
-  function submitInvoice() {
-    createNewInvoice(invoiceState, lineItemState);
-
+  function submitInvoice(e) {
+    let status = "Pending";
+    if (e.target.textContent === "Save as Draft") {
+      status = "Draft";
+    }
+    createNewInvoice(invoiceState, lineItemState, status);
     dispatch({ type: "CLOSE_MODAL" });
+    // updateLineItem({ type: "RESET" });
+    // updateInvoice({ type: "RESET" });
   }
 
   return (
@@ -63,7 +68,10 @@ function NewInvoiceModal() {
             <LoginButton classes={"invoice-footer-btn discard"}>
               Discard
             </LoginButton>
-            <LoginButton classes={"invoice-footer-btn draft"}>
+            <LoginButton
+              onClick={submitInvoice}
+              classes={"invoice-footer-btn draft"}
+            >
               Save as Draft
             </LoginButton>
             <LoginButton

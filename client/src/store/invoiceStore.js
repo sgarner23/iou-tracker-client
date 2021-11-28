@@ -15,7 +15,7 @@ const initialState = {
   clientZipCode: "",
   clientCountry: "",
   invoiceDate: "",
-  invoiceStatus: "Pending",
+  // invoiceStatus: "Pending",
   displayMessage: "",
   numOfDays: "",
   projectDescription: "",
@@ -135,6 +135,10 @@ const reducer = (state, action) => {
         ...state,
         projectDescription: action.value,
       };
+    }
+
+    case "RESET": {
+      return initialState;
     }
 
     default:
