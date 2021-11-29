@@ -3,6 +3,7 @@ import { userContext } from "./store/userStore";
 import { Navigate, useRoutes } from "react-router-dom";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
+import Invoice from "./pages/Invoice";
 import persistUserLogin from "./helpers/getDataFromSession";
 
 import "./App.css";
@@ -26,6 +27,11 @@ function App() {
     {
       path: "/profile",
       element: state.user ? <Profile /> : <Navigate replace to="/login" />,
+    },
+
+    {
+      path: "/invoice",
+      element: state.user ? <Invoice /> : <Navigate replace to="/login" />,
     },
   ]);
 

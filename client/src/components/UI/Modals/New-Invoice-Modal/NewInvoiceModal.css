@@ -30,25 +30,6 @@
   position: relative;
 }
 
-.go-back {
-  display: flex;
-  width: 83px;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 12px;
-  cursor: pointer;
-  padding-bottom: 20px;
-}
-
-.left-arrow {
-  width: 10px;
-}
-
-.go-back-text {
-  font-weight: bold;
-  padding-top: 4px;
-}
-
 .new-invoice-text {
   font-size: 18px;
   font-weight: bold;

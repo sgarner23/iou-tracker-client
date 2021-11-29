@@ -14,11 +14,11 @@
 }
 
 .left {
-  animation: moveInLeft 0.8s ease-out;
+  animation: moveInLeft 0.5s ease-out;
 }
 
 .right {
-  animation: moveInRight 0.8s ease-out;
+  animation: moveInRight 0.5s ease-out;
 }
 
 .card-container:hover {

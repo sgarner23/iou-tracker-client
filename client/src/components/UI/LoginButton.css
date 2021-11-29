@@ -64,3 +64,12 @@ button {
   color: #7f88c3;
   border: none;
 }
+
+.delete {
+  height: 48px !important;
+  background-color: #ec5757;
+}
+
+.mark-as-paid {
+  width: 400px;
+}

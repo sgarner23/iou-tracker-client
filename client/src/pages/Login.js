@@ -12,6 +12,11 @@ const Login = () => {
   const { state, dispatch } = useContext(userContext);
   const [loginIsActive, setLoginIsActive] = useState(true);
 
+  // sessionStorage.removeItem("accessToken");
+  // sessionStorage.removeItem("userData");
+
+  // console.log("running");
+
   function clickHandler(e) {
     if (e.target.textContent === "Login" && !loginIsActive) {
       setLoginIsActive(true);
@@ -25,7 +30,7 @@ const Login = () => {
 
   return (
     <div className="login-page">
-      <Card>
+      <Card classes={"card-wrapper"}>
         {state.modalToDisplay === "userCreated" && <SignupModal />}
         <h1>{loginIsActive ? "Login Form" : "Signup Form"}</h1>
         <div className="login-btns-container">

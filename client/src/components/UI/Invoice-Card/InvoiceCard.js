@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { useNavigate } from "react-router";
 import { userContext } from "../../../store/userStore";
 import DateStatusAndAmount from "./DateStatusAndAmount";
 import InvoiceAndName from "./InvoiceAndName";
@@ -12,9 +13,15 @@ function InvoiceCard({
   clientName,
   classes,
 }) {
+  const navigate = useNavigate();
   const { state, dispatch } = useContext(userContext);
+
+  function invoiceClickHandler() {
+    navigate("/invoice");
+  }
+
   return (
-    <div className={`card-container ${classes}`}>
+    <div onClick={invoiceClickHandler} className={`card-container ${classes}`}>
       <InvoiceAndName clientName={clientName} number={number} />
       <DateStatusAndAmount
         dueDate={dueDate}
