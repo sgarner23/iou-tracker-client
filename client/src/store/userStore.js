@@ -25,6 +25,7 @@ const reducer = (state, action) => {
     }
 
     case "USERS_INVOICES": {
+      console.log(action.value);
       return {
         ...state,
         usersInvoices: action.value,

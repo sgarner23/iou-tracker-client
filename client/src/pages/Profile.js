@@ -8,7 +8,6 @@ import InvoiceCard from "../components/UI/Invoice-Card/InvoiceCard";
 import NewInvoiceModal from "../components/UI/Modals/New-Invoice-Modal/NewInvoiceModal";
 import getUserInvoices from "../api/getInvoices";
 import illustration_empty from "../assets/illustration_empty.svg";
-import { lineItemContext } from "../store/lineItemStore";
 
 function Profile() {
   const { state, dispatch } = useContext(userContext);
@@ -20,8 +19,7 @@ function Profile() {
     if (state.user) {
       const allInvoices = getUserInvoices();
       allInvoices.then((res) => {
-        if (res.userInvoices.length > 0) {
-          console.log("in the if");
+        if (res && res.userInvoices && res.userInvoices.length > 0) {
           dispatch({ type: "USERS_INVOICES", value: res.userInvoices });
           dispatch({ type: "NUM_OF_INVOICES", value: res.userInvoices.length });
           setNoInvoices(false);

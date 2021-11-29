@@ -1,15 +1,36 @@
-import React from "react";
+import React, { useEffect, useContext, useState } from "react";
+import { userContext } from "../store/userStore";
 import GoBack from "../components/GoBack";
 import Header from "../components/Header";
 import InvoiceFooter from "../components/InvoiceFooter";
 import LineItemDetails from "../components/LineItemDetails";
 import Card from "../components/UI/Card";
 import LoginButton from "../components/UI/LoginButton";
+import { useParams } from "react-router";
 
 import StatusDiv from "../components/UI/StatusDiv";
+import getSingleInvoice from "../api/getSingleInvoice";
 import "./Invoice.css";
 
 function Invoice() {
+  const { state, dispatch } = useContext(userContext);
+  const [selectedInvoice, setSelectedInvoice] = useState({});
+  const { id } = useParams();
+
+  state.usersInvoices.forEach((invoice) => {
+    if (invoice.id === +id && selectedInvoice.id !== +id) {
+      setSelectedInvoice(invoice);
+    }
+  });
+
+  useEffect(() => {
+    console.log(selectedInvoice);
+  }, [selectedInvoice]);
+
+  // const invoice = await getSingleInvoice(id);
+  // console.log(invoice);
+
+  console.log("Right before the return");
   return (
     <React.Fragment>
       <Header />

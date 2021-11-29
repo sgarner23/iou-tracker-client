@@ -17,7 +17,7 @@ function InvoiceCard({
   const { state, dispatch } = useContext(userContext);
 
   function invoiceClickHandler() {
-    navigate("/invoice");
+    navigate(`/invoice/${number}`);
   }
 
   return (
