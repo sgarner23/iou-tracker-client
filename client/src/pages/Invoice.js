@@ -15,6 +15,7 @@ import "./Invoice.css";
 function Invoice() {
   const { state, dispatch } = useContext(userContext);
   const [selectedInvoice, setSelectedInvoice] = useState({});
+  const [orderDate, setOrderDate] = useState("");
   const { id } = useParams();
 
   state.usersInvoices.forEach((invoice) => {
@@ -23,14 +24,24 @@ function Invoice() {
     }
   });
 
+  function formatDate(date) {
+    const invoiceDate = new Date(date);
+    let dateMiliSecs = Date.parse(invoiceDate);
+    let formattedDate = new Date(dateMiliSecs).toDateString();
+    let dateArr = formattedDate.split(" ");
+    const newDateArr = [dateArr[2], dateArr[1], dateArr[3]];
+    return newDateArr.join(" ");
+  }
+
   useEffect(() => {
+    const invoiceDate = formatDate(selectedInvoice.order_date);
+    setOrderDate(invoiceDate);
     console.log(selectedInvoice);
   }, [selectedInvoice]);
 
   // const invoice = await getSingleInvoice(id);
   // console.log(invoice);
 
-  console.log("Right before the return");
   return (
     <React.Fragment>
       <Header />
@@ -40,7 +51,7 @@ function Invoice() {
           <Card classes={"card-wrapper lighter-shadow"}>
             <div className="status-wrapper">
               <p className="status-text-invoicepg">Status</p>
-              <StatusDiv invoiceStatus={"Pending"} />
+              <StatusDiv invoiceStatus={selectedInvoice.is_paid} />
             </div>
           </Card>
 
@@ -48,13 +59,22 @@ function Invoice() {
             <div className="invoice-content-container">
               <div className="invoice-description-container">
                 <p className="invoice-num inline">
-                  <span className="num-sign">#</span>IOU69
+                  <span className="num-sign">#</span>
+                  {`IOU${selectedInvoice.id}`}
                 </p>
-                <p className="description-text lighter-text">Graphic Design</p>
+                <p className="description-text lighter-text">
+                  {selectedInvoice.project_type}
+                </p>
               </div>
               <div className="address-container">
                 <p className="lighter-text smaller-text address">
-                  19 Union Terrace London E1 3EZ United Kingdom
+                  {selectedInvoice.user_street_address}
+                </p>
+                <p className="lighter-text smaller-text address">
+                  {`${selectedInvoice.user_city} ${selectedInvoice.user_state} ${selectedInvoice.user_zip}`}
+                </p>
+                <p className="lighter-text smaller-text address">
+                  {`${selectedInvoice.user_country}`}
                 </p>
               </div>
               <div className="invoice-date-name-container">
@@ -62,28 +82,37 @@ function Invoice() {
                   <p className="smaller-text lighter-text client-details">
                     Invoice Date
                   </p>
-                  <p className="bigger-text darker-text">21 Aug 2021</p>
+                  <p className="bigger-text darker-text">{orderDate}</p>
                   <p className="smaller-text lighter-text payment-due client-details">
                     Payment Due
                   </p>
-                  <p className="bigger-text darker-text">20 Sep 2021</p>
+                  <p className="bigger-text darker-text">
+                    {selectedInvoice.payment_date}
+                  </p>
                 </div>
                 <div className="client-name-address-container">
                   <p className="smaller-text lighter-text client-details">
                     Bill To
                   </p>
-                  <p className="bigger-text darker-text">Alex Grim</p>
-                  <p className="lighter-text smaller-text address address-pad">
-                    84 Church Way Bradford BD1 9PB United Kingdom
+                  <p className="bigger-text darker-text">
+                    {selectedInvoice.client_name}
+                  </p>
+                  <p className="lighter-text smaller-text address-pad address ">
+                    {selectedInvoice.client_street_address}
+                  </p>
+                  <p className="lighter-text smaller-text address">
+                    {`${selectedInvoice.client_city} ${selectedInvoice.client_state} ${selectedInvoice.client_zip} ${selectedInvoice.client_country}`}
                   </p>
                 </div>
               </div>
               <div className="sent-to-container">
                 <p className="lighter-text smaller-text">Sent to</p>
-                <p className="bigger-text darker-text">alexgrim@mail.com</p>
+                <p className="bigger-text darker-text">
+                  {selectedInvoice.client_email}
+                </p>
               </div>
             </div>
-            <LineItemDetails />
+            <LineItemDetails subtotal={selectedInvoice.subtotal} />
           </Card>
           <div className="margin-div"></div>
           <InvoiceFooter>

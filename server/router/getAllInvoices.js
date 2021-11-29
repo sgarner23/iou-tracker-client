@@ -4,5 +4,7 @@ const getInvoicesCtrl = require("../controller/getInvoicesController");
 const { validateUser } = require("../middleware/validateUser");
 
 router.get("/api/all", validateUser, getInvoicesCtrl.getInvoices);
+router.get("/api/user-invoice", validateUser, getInvoicesCtrl.findInvoice);
+router.get("/api/line-items", validateUser, getInvoicesCtrl.findLineItems);
 
 module.exports = router;
