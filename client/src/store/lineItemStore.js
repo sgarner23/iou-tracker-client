@@ -3,7 +3,7 @@ import React, { createContext, useReducer } from "react";
 const initialState = {
   lineItems: [
     {
-      quanity: "",
+      quantity: "",
       unitPrice: "",
       itemName: "",
       subtotal: "",
@@ -22,11 +22,11 @@ const reducer = (state, action) => {
       };
     }
 
-    case "quanity": {
+    case "quantity": {
       const arrOfLineItems = state.lineItems;
-      arrOfLineItems[action.index].quanity = action.value;
+      arrOfLineItems[action.index].quantity = action.value;
       const total =
-        +arrOfLineItems[action.index].quanity *
+        +arrOfLineItems[action.index].quantity *
         +arrOfLineItems[action.index].unitPrice;
       arrOfLineItems[action.index].subtotal = total.toFixed(2);
       return {
@@ -39,7 +39,7 @@ const reducer = (state, action) => {
       const arrOfLineItems = state.lineItems;
       arrOfLineItems[action.index].unitPrice = action.value;
       const total =
-        +arrOfLineItems[action.index].quanity *
+        +arrOfLineItems[action.index].quantity *
         +arrOfLineItems[action.index].unitPrice;
       arrOfLineItems[action.index].subtotal = total.toFixed(2);
 
@@ -53,7 +53,7 @@ const reducer = (state, action) => {
       const updatedLineItems = [
         ...state.lineItems,
         {
-          quanity: "",
+          quantity: "",
           unitPrice: "",
           itemName: "",
           subtotal: "",

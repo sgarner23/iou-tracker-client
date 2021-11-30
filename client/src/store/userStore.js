@@ -10,7 +10,6 @@ const initialState = {
 const reducer = (state, action) => {
   switch (action.type) {
     case "USER_LOGGED_IN": {
-      console.log("user logged in");
       return {
         ...state,
         user: action.value,
@@ -25,7 +24,6 @@ const reducer = (state, action) => {
     }
 
     case "USERS_INVOICES": {
-      console.log(action.value);
       return {
         ...state,
         usersInvoices: action.value,

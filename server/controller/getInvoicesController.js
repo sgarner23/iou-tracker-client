@@ -26,7 +26,7 @@ async function getInvoices(req, res) {
 }
 
 async function findInvoice(req, res) {
-  const { invoiceID } = req.body;
+  const { invoiceID } = req;
 
   try {
     console.log("hello invoice");
@@ -44,15 +44,19 @@ async function findInvoice(req, res) {
 }
 
 async function findLineItems(req, res) {
-  const { invoiceID } = req.body;
+  console.log(req.params);
+  const { id } = req.params;
 
   try {
-    console.log("hello invoice");
+    console.log("hello Stephen");
     const db = req.app.get("db");
+    console.log("I am the ID ", id);
 
     let lineItems = await db.line_items.find({
-      invoice_id: invoiceID,
+      invoice_id: id,
     });
+
+    console.log(lineItems);
     res.status(200).send({ lineItems });
   } catch (error) {
     console.log(error);

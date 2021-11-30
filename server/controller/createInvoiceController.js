@@ -65,6 +65,7 @@ async function addNewInvoice(req, res) {
     });
 
     for (let i = 0; i < lineItems.length; i++) {
+      console.log("this is line items ", lineItems[i]);
       const newLineItem = await db.line_items.save({
         invoice_id: newInvoice.id,
         quantity: lineItems[i].quantity,
@@ -72,6 +73,7 @@ async function addNewInvoice(req, res) {
         item_name: lineItems[i].itemName,
         subtotal: lineItems[i].subtotal,
       });
+      console.log(newLineItem);
     }
 
     res.status(200).send({ newInvoice });

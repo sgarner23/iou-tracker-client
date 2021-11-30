@@ -19,6 +19,7 @@ const initialState = {
   displayMessage: "",
   numOfDays: "",
   projectDescription: "",
+  currentInvoiceID: null,
 };
 
 const reducer = (state, action) => {
@@ -139,6 +140,13 @@ const reducer = (state, action) => {
 
     case "RESET": {
       return initialState;
+    }
+
+    case "INVOICE_ID": {
+      return {
+        ...state,
+        currentInvoiceID: action.value,
+      };
     }
 
     default:

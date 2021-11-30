@@ -13,7 +13,6 @@ function FilterAddBar({ loading }) {
   }
 
   const numOfInvoices = () => {
-    console.log("In the func");
     if (loading) {
       return <p>Loading...</p>;
     } else if (!loading && state.numOfUserInvoices) {

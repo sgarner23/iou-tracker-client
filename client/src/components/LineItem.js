@@ -1,14 +1,14 @@
 import React from "react";
 import "./LineItem.css";
 
-function LineItem() {
+function LineItem({ itemName, quantity, unitPrice, subtotal }) {
   return (
     <div className="description-wrapper">
-      <div className="quanity-and-unitprice">
-        <p className="design-title">Banner Design</p>
-        <p className="units-price">2 x $200.00</p>
+      <div className="quantity-and-unitprice">
+        <p className="design-title">{itemName}</p>
+        <p className="units-price">{`${quantity} x $${unitPrice}`}</p>
       </div>
-      <p className="design-title">$400.00</p>
+      <p className="design-title">{`$${subtotal}`}</p>
     </div>
   );
 }

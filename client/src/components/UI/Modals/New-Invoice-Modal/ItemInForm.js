@@ -31,17 +31,17 @@ function ItemInForm({ index }) {
         value={lineItemState.lineItems[index].itemName}
         onChange={formChangeHandler}
       />
-      <div className="quanity-price-container">
+      <div className="quantity-price-container">
         <div className="qty-container">
-          <label htmlFor="quanity" className="label bill-to-label item-label">
+          <label htmlFor="quantity" className="label bill-to-label item-label">
             Qty.
           </label>
           <input
             type="number"
             min="0"
             className="invoice-input bill-to-input qty-input"
-            name="quanity"
-            value={lineItemState.lineItems[index].quanity}
+            name="quantity"
+            value={lineItemState.lineItems[index].quantity}
             onChange={formChangeHandler}
           />
         </div>
