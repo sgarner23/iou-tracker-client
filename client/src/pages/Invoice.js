@@ -7,23 +7,36 @@ import InvoiceFooter from "../components/InvoiceFooter";
 import LineItemDetails from "../components/LineItemDetails";
 import Card from "../components/UI/Card";
 import LoginButton from "../components/UI/LoginButton";
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router";
+import paid from "../api/markAsPaid";
 
 import StatusDiv from "../components/UI/StatusDiv";
 import "./Invoice.css";
+import DeleteModal from "../components/UI/Modals/DeleteModal";
 
 function Invoice() {
   const { state, dispatch } = useContext(userContext);
   const { invoiceState, updateInvoice } = useContext(invoiceContext);
   const [selectedInvoice, setSelectedInvoice] = useState({});
+
   const [orderDate, setOrderDate] = useState("");
   const { id } = useParams();
+  const navigate = useNavigate();
 
   state.usersInvoices.forEach((invoice) => {
     if (invoice.id === +id && selectedInvoice.id !== +id) {
       setSelectedInvoice(invoice);
     }
   });
+
+  function markAsPaidHandler() {
+    paid(selectedInvoice.id);
+    navigate("./profile");
+  }
+
+  function deleteHandler() {
+    dispatch({ type: "DELETE_INVOICE_MODAL" });
+  }
 
   function formatDate(date) {
     const invoiceDate = new Date(date);
@@ -35,6 +48,7 @@ function Invoice() {
   }
 
   useEffect(() => {
+    console.log("i just ran");
     const invoiceDate = formatDate(selectedInvoice.order_date);
     setOrderDate(invoiceDate);
     updateInvoice({ type: "INVOICE_ID", value: id });
@@ -42,6 +56,9 @@ function Invoice() {
 
   return (
     <React.Fragment>
+      {state.modalToDisplay && (
+        <DeleteModal selectedInvoiceID={selectedInvoice.id} />
+      )}
       <Header />
       <div className="page-container">
         <div className="page-container-2">
@@ -117,10 +134,16 @@ function Invoice() {
             <LoginButton classes={"invoice-footer-btn discard"}>
               Edit
             </LoginButton>
-            <LoginButton classes={"invoice-footer-btn draft delete"}>
+            <LoginButton
+              onClick={deleteHandler}
+              classes={"invoice-footer-btn draft delete"}
+            >
               Delete
             </LoginButton>
-            <LoginButton classes={"active invoice-footer-btn mark-as-paid"}>
+            <LoginButton
+              onClick={markAsPaidHandler}
+              classes={"active invoice-footer-btn mark-as-paid"}
+            >
               Mark as Paid
             </LoginButton>
           </InvoiceFooter>

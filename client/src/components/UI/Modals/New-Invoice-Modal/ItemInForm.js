@@ -68,7 +68,7 @@ function ItemInForm({ index }) {
             src={icon_delete}
             alt="trash can"
             onClick={deleteHandler}
-            className="delete"
+            className="trash-can"
           />
         </div>
       </div>

@@ -23,6 +23,7 @@ function App() {
     if (!state.user) {
       const userInfo = persistUserLogin();
       dispatch({ type: "USER_LOGGED_IN", value: userInfo });
+      // if there is no user already stored in state, navigate them to the current pathname of the page they're on
       navigate(`${location.pathname}`);
     }
   }, []);

@@ -9,8 +9,6 @@ function LineItemDetails({ subtotal }) {
   const { invoiceState, updateInvoice } = useContext(invoiceContext);
   const [lineItemsList, setLineItemsList] = useState([]);
 
-  console.log("I AM THE LINE 11 ", invoiceState.currentInvoiceID);
-
   useEffect(() => {
     if (invoiceState.currentInvoiceID) {
       console.log("I AM THE USEEFFECT!");
@@ -18,17 +16,6 @@ function LineItemDetails({ subtotal }) {
       lineItems.then((res) => {
         console.log(res);
         setLineItemsList(res.lineItems);
-        // const listOfLineItems = res.lineItems.map((line, index) => {
-        //   return (
-        //     <LineItem
-        //       itemName={line.item_name}
-        //       quantity={line.quantity}
-        //       unitPrice={line.unit_price}
-        //       subtotal={line.subtotal}
-        //     />
-        //   );
-        // });
-        // setLineItemsList(listOfLineItems)
       });
     }
   }, [invoiceState.currentInvoiceID]);
@@ -39,6 +26,7 @@ function LineItemDetails({ subtotal }) {
         {lineItemsList.map((line, index) => {
           return (
             <LineItem
+              key={index}
               itemName={line.item_name}
               quantity={line.quantity}
               unitPrice={line.unit_price}

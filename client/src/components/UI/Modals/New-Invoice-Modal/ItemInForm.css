@@ -40,8 +40,9 @@
   padding-top: 15px;
 }
 
-.delete {
-  height: 12px;
+.trash-can {
+  height: 15px;
+  padding-right: 7px;
   align-self: center;
   cursor: pointer;
 }

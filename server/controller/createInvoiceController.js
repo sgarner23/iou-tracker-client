@@ -83,6 +83,36 @@ async function addNewInvoice(req, res) {
   }
 }
 
+async function markAsPaid(req, res) {
+  try {
+    const db = req.app.get("db");
+    console.log(req.body);
+    const { invoiceID } = req.body;
+    console.log(invoiceID);
+    console.log("MARK AS PAID ", invoiceID);
+
+    const criteria = {
+      id: invoiceID,
+    };
+
+    const changes = {
+      is_paid: "Paid",
+    };
+
+    const options = {
+      single: true,
+    };
+
+    const statusUpdate = await db.invoice.update(criteria, changes, options);
+
+    res.status(200).send({ statusUpdate, message: "Invoice marked as paid" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Error updating invoice");
+  }
+}
+
 module.exports = {
   addNewInvoice,
+  markAsPaid,
 };

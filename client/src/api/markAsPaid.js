@@ -10,18 +10,16 @@ const authAxios = axios.create({
   },
 });
 
-async function createNewInvoice(invoiceState, lineItemState, invoiceStatus) {
+async function paid(invoiceID) {
   try {
-    const res = await authAxios.post("http://localhost:4082/api/invoice", {
-      ...invoiceState,
-      ...lineItemState,
-      invoiceStatus,
-    });
+    const res = await authAxios.put(`${apiUrl}/mark-as-paid`, { invoiceID });
     console.log(res.data);
+    console.log(res.data);
+    return res.data;
   } catch (error) {
     console.log(error);
     return;
   }
 }
 
-export default createNewInvoice;
+export default paid;
