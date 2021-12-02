@@ -9,8 +9,13 @@ function GoBack() {
   const { state, dispatch } = useContext(userContext);
 
   function clickGoBack() {
-    navigate("/profile");
-    dispatch({ type: "CLOSE_MODAL" });
+    if (state.modalToDisplay) {
+      dispatch({ type: "CLOSE_MODAL" });
+      return;
+    } else {
+      dispatch({ type: "CLOSE_MODAL" });
+      navigate("/profile");
+    }
   }
   return (
     <div onClick={clickGoBack} className="go-back">

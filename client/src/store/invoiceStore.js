@@ -15,11 +15,11 @@ const initialState = {
   clientZipCode: "",
   clientCountry: "",
   invoiceDate: "",
-  // invoiceStatus: "Pending",
   displayMessage: "",
   numOfDays: "",
   projectDescription: "",
   currentInvoiceID: null,
+  selectedInvoice: {},
 };
 
 const reducer = (state, action) => {
@@ -146,6 +146,13 @@ const reducer = (state, action) => {
       return {
         ...state,
         currentInvoiceID: action.value,
+      };
+    }
+
+    case "SELECTED_INVOICE": {
+      return {
+        ...state,
+        selectedInvoice: action.value,
       };
     }
 

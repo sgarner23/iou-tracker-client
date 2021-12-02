@@ -37,6 +37,13 @@ const reducer = (state, action) => {
       };
     }
 
+    case "EDIT_INVOICE_MODAL": {
+      return {
+        ...state,
+        modalToDisplay: "editInvoice",
+      };
+    }
+
     case "DELETE_INVOICE_MODAL": {
       return {
         ...state,

@@ -43,6 +43,8 @@ async function addNewInvoice(req, res) {
 
     const invoiceTotal = calculateTotal(lineItems);
 
+    console.log("we bout to save to the db");
+
     const newInvoice = await db.invoice.save({
       project_type: projectDescription,
       is_paid: invoiceStatus,
@@ -63,6 +65,8 @@ async function addNewInvoice(req, res) {
       client_state: clientState,
       client_zip: clientZipCode,
     });
+
+    console.log("this is the new invoice: ", newInvoice);
 
     for (let i = 0; i < lineItems.length; i++) {
       console.log("this is line items ", lineItems[i]);

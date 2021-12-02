@@ -13,29 +13,36 @@ import paid from "../api/markAsPaid";
 import StatusDiv from "../components/UI/StatusDiv";
 import "./Invoice.css";
 import DeleteModal from "../components/UI/Modals/DeleteModal";
+import InvoiceModal from "../components/UI/Modals/New-Invoice-Modal/InvoiceModal";
 
 function Invoice() {
   const { state, dispatch } = useContext(userContext);
   const { invoiceState, updateInvoice } = useContext(invoiceContext);
-  const [selectedInvoice, setSelectedInvoice] = useState({});
 
+  const [loadState, setLoadState] = useState(true);
   const [orderDate, setOrderDate] = useState("");
   const { id } = useParams();
   const navigate = useNavigate();
+  console.log(id);
+  console.log(state.usersInvoices);
 
   state.usersInvoices.forEach((invoice) => {
-    if (invoice.id === +id && selectedInvoice.id !== +id) {
-      setSelectedInvoice(invoice);
+    if (invoice.id === +id && invoiceState.selectedInvoice.id !== +id) {
+      updateInvoice({ type: "SELECTED_INVOICE", value: invoice });
     }
   });
 
   function markAsPaidHandler() {
-    paid(selectedInvoice.id);
+    paid(invoiceState.selectedInvoice.id);
     navigate("./profile");
   }
 
   function deleteHandler() {
     dispatch({ type: "DELETE_INVOICE_MODAL" });
+  }
+
+  function editHandler() {
+    dispatch({ type: "EDIT_INVOICE_MODAL" });
   }
 
   function formatDate(date) {
@@ -48,17 +55,19 @@ function Invoice() {
   }
 
   useEffect(() => {
-    console.log("i just ran");
-    const invoiceDate = formatDate(selectedInvoice.order_date);
+    const invoiceDate = formatDate(invoiceState.selectedInvoice.order_date);
     setOrderDate(invoiceDate);
     updateInvoice({ type: "INVOICE_ID", value: id });
-  }, [selectedInvoice]);
+  }, [invoiceState.selectedInvoice.order_date]);
 
+  console.log("THIS IS THE INVOICE STATE BITCH ", invoiceState);
   return (
     <React.Fragment>
-      {state.modalToDisplay && (
-        <DeleteModal selectedInvoiceID={selectedInvoice.id} />
+      {state.modalToDisplay === "deleteInvoice" && (
+        <DeleteModal selectedInvoiceID={invoiceState.selectedInvoice.id} />
       )}
+
+      {state.modalToDisplay === "editInvoice" && <InvoiceModal />}
       <Header />
       <div className="page-container">
         <div className="page-container-2">
@@ -66,7 +75,7 @@ function Invoice() {
           <Card classes={"card-wrapper lighter-shadow"}>
             <div className="status-wrapper">
               <p className="status-text-invoicepg">Status</p>
-              <StatusDiv invoiceStatus={selectedInvoice.is_paid} />
+              <StatusDiv invoiceStatus={invoiceState.selectedInvoice.is_paid} />
             </div>
           </Card>
 
@@ -75,21 +84,21 @@ function Invoice() {
               <div className="invoice-description-container">
                 <p className="invoice-num inline">
                   <span className="num-sign">#</span>
-                  {`IOU${selectedInvoice.id}`}
+                  {`IOU${invoiceState.selectedInvoice.id}`}
                 </p>
                 <p className="description-text lighter-text">
-                  {selectedInvoice.project_type}
+                  {invoiceState.selectedInvoice.project_type}
                 </p>
               </div>
               <div className="address-container">
                 <p className="lighter-text smaller-text address">
-                  {selectedInvoice.user_street_address}
+                  {invoiceState.selectedInvoice.user_street_address}
                 </p>
                 <p className="lighter-text smaller-text address">
-                  {`${selectedInvoice.user_city} ${selectedInvoice.user_state} ${selectedInvoice.user_zip}`}
+                  {`${invoiceState.selectedInvoice.user_city} ${invoiceState.selectedInvoice.user_state} ${invoiceState.selectedInvoice.user_zip}`}
                 </p>
                 <p className="lighter-text smaller-text address">
-                  {`${selectedInvoice.user_country}`}
+                  {`${invoiceState.selectedInvoice.user_country}`}
                 </p>
               </div>
               <div className="invoice-date-name-container">
@@ -102,7 +111,7 @@ function Invoice() {
                     Payment Due
                   </p>
                   <p className="bigger-text darker-text">
-                    {selectedInvoice.payment_date}
+                    {invoiceState.selectedInvoice.payment_date}
                   </p>
                 </div>
                 <div className="client-name-address-container">
@@ -110,28 +119,31 @@ function Invoice() {
                     Bill To
                   </p>
                   <p className="bigger-text darker-text">
-                    {selectedInvoice.client_name}
+                    {invoiceState.selectedInvoice.client_name}
                   </p>
                   <p className="lighter-text smaller-text address-pad address ">
-                    {selectedInvoice.client_street_address}
+                    {invoiceState.selectedInvoice.client_street_address}
                   </p>
                   <p className="lighter-text smaller-text address">
-                    {`${selectedInvoice.client_city} ${selectedInvoice.client_state} ${selectedInvoice.client_zip} ${selectedInvoice.client_country}`}
+                    {`${invoiceState.selectedInvoice.client_city} ${invoiceState.selectedInvoice.client_state} ${invoiceState.selectedInvoice.client_zip} ${invoiceState.selectedInvoice.client_country}`}
                   </p>
                 </div>
               </div>
               <div className="sent-to-container">
                 <p className="lighter-text smaller-text">Sent to</p>
                 <p className="bigger-text darker-text">
-                  {selectedInvoice.client_email}
+                  {invoiceState.selectedInvoice.client_email}
                 </p>
               </div>
             </div>
-            <LineItemDetails subtotal={selectedInvoice.subtotal} />
+            <LineItemDetails subtotal={invoiceState.selectedInvoice.subtotal} />
           </Card>
           <div className="margin-div"></div>
           <InvoiceFooter>
-            <LoginButton classes={"invoice-footer-btn discard"}>
+            <LoginButton
+              onClick={editHandler}
+              classes={"invoice-footer-btn discard"}
+            >
               Edit
             </LoginButton>
             <LoginButton

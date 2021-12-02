@@ -13,7 +13,6 @@ async function invoiceDelete(invoiceID) {
     });
 
     const res = await authAxios.delete(`${apiUrl}/delete/${invoiceID}`);
-    console.log(res.data);
     if (res) {
       return res.data;
     }

@@ -5,7 +5,7 @@ import { userContext } from "../store/userStore";
 import FilterAddBar from "../components/FilterAddBar";
 import "./Profile.css";
 import InvoiceCard from "../components/UI/Invoice-Card/InvoiceCard";
-import NewInvoiceModal from "../components/UI/Modals/New-Invoice-Modal/NewInvoiceModal";
+import InvoiceModal from "../components/UI/Modals/New-Invoice-Modal/InvoiceModal";
 import getUserInvoices from "../api/getInvoices";
 import illustration_empty from "../assets/illustration_empty.svg";
 
@@ -48,7 +48,7 @@ function Profile() {
 
   return (
     <div className="profile-container">
-      {state.modalToDisplay && <NewInvoiceModal />}
+      {state.modalToDisplay && <InvoiceModal />}
       <Header />
       <FilterAddBar loading={loading} />
       {noInvoices ? (

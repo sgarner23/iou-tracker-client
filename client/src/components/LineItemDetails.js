@@ -5,9 +5,10 @@ import "./LineItemDetails.css";
 import numberWithCommas from "../helpers/formatNumber";
 import getLineItems from "../api/getLineItem";
 
-function LineItemDetails({ subtotal }) {
+function LineItemDetails() {
   const { invoiceState, updateInvoice } = useContext(invoiceContext);
   const [lineItemsList, setLineItemsList] = useState([]);
+  const [subtotal, setSubtotal] = useState(0);
 
   useEffect(() => {
     if (invoiceState.currentInvoiceID) {
@@ -19,6 +20,12 @@ function LineItemDetails({ subtotal }) {
       });
     }
   }, [invoiceState.currentInvoiceID]);
+
+  useEffect(() => {
+    if (invoiceState.selectedInvoice.subtotal) {
+      setSubtotal(numberWithCommas(invoiceState.selectedInvoice.subtotal));
+    }
+  }, [invoiceState.selectedInvoice.subtotal]);
 
   return (
     <React.Fragment>
@@ -38,7 +45,7 @@ function LineItemDetails({ subtotal }) {
       <div className="grand-total-wrapper">
         <div className="grand-total">
           <p className="grand-total-text">Grand Total</p>
-          <p className="total-price">$ {numberWithCommas(subtotal)}</p>
+          <p className="total-price">$ {subtotal}</p>
         </div>
       </div>
     </React.Fragment>

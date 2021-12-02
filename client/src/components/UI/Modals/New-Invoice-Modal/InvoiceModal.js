@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { userContext } from "../../../../store/userStore";
 import { lineItemContext } from "../../../../store/lineItemStore";
 import { invoiceContext } from "../../../../store/invoiceStore";
-import "./NewInvoiceModal.css";
+import "./InvoiceModal.css";
 
 import BillFrom from "./BillFrom";
 import BillTo from "./BillTo";
@@ -14,7 +14,7 @@ import createNewInvoice from "../../../../api/createInvoice";
 import getUserInvoices from "../../../../api/getInvoices";
 import GoBack from "../../../GoBack";
 
-function NewInvoiceModal() {
+function InvoiceModal() {
   const { state, dispatch } = useContext(userContext);
   const { lineItemState, updateLineItem } = useContext(lineItemContext);
   const { invoiceState, updateInvoice } = useContext(invoiceContext);
@@ -27,7 +27,7 @@ function NewInvoiceModal() {
     return <ItemInForm index={index} key={index} />;
   });
 
-  function submitInvoice(e) {
+  async function submitInvoice(e) {
     let status = "Pending";
     if (e.target.textContent === "Discard") {
       dispatch({ type: "CLOSE_MODAL" });
@@ -38,10 +38,10 @@ function NewInvoiceModal() {
     if (e.target.textContent === "Save as Draft") {
       status = "Draft";
     }
-    createNewInvoice(invoiceState, lineItemState, status);
-    dispatch({ type: "CLOSE_MODAL" });
+    await createNewInvoice(invoiceState, lineItemState, status);
     updateLineItem({ type: "RESET" });
     updateInvoice({ type: "RESET" });
+    dispatch({ type: "CLOSE_MODAL" });
   }
 
   return (
@@ -86,4 +86,4 @@ function NewInvoiceModal() {
   );
 }
 
-export default NewInvoiceModal;
+export default InvoiceModal;
