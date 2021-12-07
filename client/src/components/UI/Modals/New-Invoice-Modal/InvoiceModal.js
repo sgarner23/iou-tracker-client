@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { userContext } from "../../../../store/userStore";
+import { useParams } from "react-router-dom";
 import { lineItemContext } from "../../../../store/lineItemStore";
 import { invoiceContext } from "../../../../store/invoiceStore";
 import "./InvoiceModal.css";
@@ -11,13 +12,14 @@ import ItemInForm from "./ItemInForm";
 import InvoiceFooter from "../../../InvoiceFooter";
 import LoginButton from "../../LoginButton";
 import createNewInvoice from "../../../../api/createInvoice";
-import getUserInvoices from "../../../../api/getInvoices";
+import editInvoice from "../../../../api/editInvoice";
 import GoBack from "../../../GoBack";
 
 function InvoiceModal() {
   const { state, dispatch } = useContext(userContext);
   const { lineItemState, updateLineItem } = useContext(lineItemContext);
   const { invoiceState, updateInvoice } = useContext(invoiceContext);
+  const { id } = useParams();
 
   function newLineClickHandler() {
     updateLineItem({ type: "ADD_NEW_LINE" });
@@ -35,6 +37,15 @@ function InvoiceModal() {
       updateInvoice({ type: "RESET" });
       return;
     }
+
+    if (invoiceState.editingInvoice) {
+      await editInvoice(invoiceState.selectedInvoice);
+      updateLineItem({ type: "RESET" });
+      updateInvoice({ type: "RESET" });
+      dispatch({ type: "CLOSE_MODAL" });
+      return;
+    }
+
     if (e.target.textContent === "Save as Draft") {
       status = "Draft";
     }
@@ -57,13 +68,18 @@ function InvoiceModal() {
           <BillFrom />
           <BillTo />
           <InvoiceDetails />
-          <p className="item-list-header">Item List</p>
-          {listOfLineItems}
-          <button onClick={newLineClickHandler} className="add-item">
-            + Add New Item{" "}
-          </button>
+          {id ? null : (
+            <React.Fragment>
+              <p className="item-list-header">Item List</p>
+              {listOfLineItems}
+              <button onClick={newLineClickHandler} className="add-item">
+                + Add New Item{" "}
+              </button>
+            </React.Fragment>
+          )}
           <div className="gradient"></div>
           <div className="filler"></div>
+
           <InvoiceFooter>
             <LoginButton
               onClick={submitInvoice}

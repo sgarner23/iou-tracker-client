@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router";
 import { userContext } from "../../../store/userStore";
+import { invoiceContext } from "../../../store/invoiceStore";
 import DateStatusAndAmount from "./DateStatusAndAmount";
 import InvoiceAndName from "./InvoiceAndName";
 import "./InvoiceCard.css";
@@ -15,9 +16,11 @@ function InvoiceCard({
 }) {
   const navigate = useNavigate();
   const { state, dispatch } = useContext(userContext);
+  const { invoiceState, updateInvoice } = useContext(invoiceContext);
 
   function invoiceClickHandler() {
     navigate(`/invoice/${number}`);
+    updateInvoice({ type: "EDITING" });
   }
 
   return (

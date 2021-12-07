@@ -20,6 +20,7 @@ const initialState = {
   projectDescription: "",
   currentInvoiceID: null,
   selectedInvoice: {},
+  editingInvoice: false,
 };
 
 const reducer = (state, action) => {
@@ -258,6 +259,13 @@ const reducer = (state, action) => {
       return {
         ...state,
         currentInvoiceID: action.value,
+      };
+    }
+
+    case "EDITING": {
+      return {
+        ...state,
+        editingInvoice: true,
       };
     }
 

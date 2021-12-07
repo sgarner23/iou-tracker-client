@@ -26,6 +26,8 @@ function Invoice() {
   console.log(id);
   console.log(state.usersInvoices);
 
+  console.log(invoiceState);
+
   state.usersInvoices.forEach((invoice) => {
     if (invoice.id === +id && invoiceState.selectedInvoice.id !== +id) {
       updateInvoice({ type: "SELECTED_INVOICE", value: invoice });

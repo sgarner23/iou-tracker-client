@@ -88,13 +88,51 @@ async function addNewInvoice(req, res) {
   }
 }
 
+async function editInvoice(req, res) {
+  console.log("WE ARE GONNA EDIT");
+
+  try {
+    const db = req.app.get("db");
+    const { selectedInvoice } = req.body;
+
+    const criteria = {
+      id: selectedInvoice.id,
+    };
+
+    const changes = {
+      user_street_address: selectedInvoice.user_street_address,
+      user_city: selectedInvoice.user_city,
+      user_state: selectedInvoice.user_state,
+      user_zip: selectedInvoice.user_zip,
+      user_country: selectedInvoice.user_country,
+      client_name: selectedInvoice.client_name,
+      client_email: selectedInvoice.client_email,
+      client_street_address: selectedInvoice.client_street_address,
+      client_city: selectedInvoice.client_city,
+      client_state: selectedInvoice.client_state,
+      client_zip: selectedInvoice.client_zip,
+      client_country: selectedInvoice.client_country,
+      project_type: selectedInvoice.project_type,
+    };
+
+    const options = {
+      single: true,
+    };
+
+    const invoiceEdit = await db.invoice.update(criteria, changes, options);
+    res
+      .status(200)
+      .send({ invoiceEdit, message: "Invoice updated successfully" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Error updating invoice");
+  }
+}
+
 async function markAsPaid(req, res) {
   try {
     const db = req.app.get("db");
-    console.log(req.body);
     const { invoiceID } = req.body;
-    console.log(invoiceID);
-    console.log("MARK AS PAID ", invoiceID);
 
     const criteria = {
       id: invoiceID,
@@ -120,4 +158,5 @@ async function markAsPaid(req, res) {
 module.exports = {
   addNewInvoice,
   markAsPaid,
+  editInvoice,
 };

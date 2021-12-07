@@ -54,7 +54,7 @@ function Profile() {
       {noInvoices ? (
         <div className="image-wrapper">
           <img src={illustration_empty} alt="no invoices image" />
-          <p className="nothing-here">This is nothing here</p>
+          <p className="nothing-here">There is nothing here</p>
           <p className="instructions">
             Create a new invoice by clicking the{" "}
             <span id="new-invoice-text">&nbsp;New Invoice</span>&nbsp;button and
