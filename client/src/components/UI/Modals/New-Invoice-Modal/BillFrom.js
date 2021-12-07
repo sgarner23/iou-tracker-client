@@ -20,7 +20,11 @@ function BillFrom() {
           type="text"
           name="userStreetAddress"
           className="invoice-input street-input"
-          value={invoiceState.userStreetAddress}
+          value={
+            invoiceState.selectedInvoice
+              ? invoiceState.selectedInvoice.user_street_address
+              : invoiceState.userStreetAddress
+          }
           onChange={formChangeHandler}
         />
         <div className="city-state-container">
@@ -31,7 +35,11 @@ function BillFrom() {
             <input
               type="text"
               name="userCity"
-              value={invoiceState.city}
+              value={
+                invoiceState.selectedInvoice
+                  ? invoiceState.selectedInvoice.user_city
+                  : invoiceState.city
+              }
               onChange={formChangeHandler}
               className="invoice-input city-state-input"
             />
@@ -43,7 +51,11 @@ function BillFrom() {
             <input
               type="text"
               name="userState"
-              value={invoiceState.userState}
+              value={
+                invoiceState.selectedInvoice
+                  ? invoiceState.selectedInvoice.user_state
+                  : invoiceState.userState
+              }
               onChange={formChangeHandler}
               className="invoice-input city-state-input state-input"
             />
@@ -57,7 +69,11 @@ function BillFrom() {
             <input
               type="text"
               name="userZipCode"
-              value={invoiceState.userZipCode}
+              value={
+                invoiceState.selectedInvoice
+                  ? invoiceState.selectedInvoice.user_zip
+                  : invoiceState.userZipCode
+              }
               onChange={formChangeHandler}
               className="invoice-input city-state-input"
             />
@@ -69,7 +85,11 @@ function BillFrom() {
             <input
               type="text"
               name="userCountry"
-              value={invoiceState.userCountry}
+              value={
+                invoiceState.selectedInvoice
+                  ? invoiceState.selectedInvoice.user_country
+                  : invoiceState.userCountry
+              }
               onChange={formChangeHandler}
               className="invoice-input city-state-input state-input"
             />

@@ -32,6 +32,14 @@ const reducer = (state, action) => {
     }
 
     case "userStreetAddress": {
+      let editedInvoice = state.selectedInvoice;
+      if (Object.keys(state.selectedInvoice).length) {
+        editedInvoice.user_street_address = action.value;
+        return {
+          ...state,
+          selectedInvoice: editedInvoice,
+        };
+      }
       return {
         ...state,
         userStreetAddress: action.value,
@@ -39,6 +47,15 @@ const reducer = (state, action) => {
     }
 
     case "userCity": {
+      let editedInvoice = state.selectedInvoice;
+      if (Object.keys(state.selectedInvoice).length) {
+        editedInvoice.user_city = action.value;
+        return {
+          ...state,
+          selectedInvoice: editedInvoice,
+        };
+      }
+
       return {
         ...state,
         userCity: action.value,
@@ -46,6 +63,14 @@ const reducer = (state, action) => {
     }
 
     case "userState": {
+      let editedInvoice = state.selectedInvoice;
+      if (Object.keys(state.selectedInvoice).length) {
+        editedInvoice.user_state = action.value;
+        return {
+          ...state,
+          selectedInvoice: editedInvoice,
+        };
+      }
       return {
         ...state,
         userState: action.value,
@@ -53,6 +78,14 @@ const reducer = (state, action) => {
     }
 
     case "userZipCode": {
+      let editedInvoice = state.selectedInvoice;
+      if (Object.keys(state.selectedInvoice).length) {
+        editedInvoice.user_zip = action.value;
+        return {
+          ...state,
+          selectedInvoice: editedInvoice,
+        };
+      }
       return {
         ...state,
         userZipCode: action.value,
@@ -60,6 +93,14 @@ const reducer = (state, action) => {
     }
 
     case "userCountry": {
+      let editedInvoice = state.selectedInvoice;
+      if (Object.keys(state.selectedInvoice).length) {
+        editedInvoice.user_country = action.value;
+        return {
+          ...state,
+          selectedInvoice: editedInvoice,
+        };
+      }
       return {
         ...state,
         userCountry: action.value,
@@ -67,6 +108,14 @@ const reducer = (state, action) => {
     }
 
     case "clientName": {
+      let editedInvoice = state.selectedInvoice;
+      if (Object.keys(state.selectedInvoice).length) {
+        editedInvoice.client_name = action.value;
+        return {
+          ...state,
+          selectedInvoice: editedInvoice,
+        };
+      }
       return {
         ...state,
         clientName: action.value,
@@ -74,6 +123,14 @@ const reducer = (state, action) => {
     }
 
     case "clientEmail": {
+      let editedInvoice = state.selectedInvoice;
+      if (Object.keys(state.selectedInvoice).length) {
+        editedInvoice.client_email = action.value;
+        return {
+          ...state,
+          selectedInvoice: editedInvoice,
+        };
+      }
       return {
         ...state,
         clientEmail: action.value,
@@ -81,6 +138,14 @@ const reducer = (state, action) => {
     }
 
     case "clientStreetAddress": {
+      let editedInvoice = state.selectedInvoice;
+      if (Object.keys(state.selectedInvoice).length) {
+        editedInvoice.client_street_address = action.value;
+        return {
+          ...state,
+          selectedInvoice: editedInvoice,
+        };
+      }
       return {
         ...state,
         clientStreetAddress: action.value,
@@ -88,6 +153,14 @@ const reducer = (state, action) => {
     }
 
     case "clientCity": {
+      let editedInvoice = state.selectedInvoice;
+      if (Object.keys(state.selectedInvoice).length) {
+        editedInvoice.client_city = action.value;
+        return {
+          ...state,
+          selectedInvoice: editedInvoice,
+        };
+      }
       return {
         ...state,
         clientCity: action.value,
@@ -95,6 +168,14 @@ const reducer = (state, action) => {
     }
 
     case "clientState": {
+      let editedInvoice = state.selectedInvoice;
+      if (Object.keys(state.selectedInvoice).length) {
+        editedInvoice.client_state = action.value;
+        return {
+          ...state,
+          selectedInvoice: editedInvoice,
+        };
+      }
       return {
         ...state,
         clientState: action.value,
@@ -102,6 +183,14 @@ const reducer = (state, action) => {
     }
 
     case "clientZipCode": {
+      let editedInvoice = state.selectedInvoice;
+      if (Object.keys(state.selectedInvoice).length) {
+        editedInvoice.client_zip = action.value;
+        return {
+          ...state,
+          selectedInvoice: editedInvoice,
+        };
+      }
       return {
         ...state,
         clientZipCode: action.value,
@@ -109,6 +198,14 @@ const reducer = (state, action) => {
     }
 
     case "clientCountry": {
+      let editedInvoice = state.selectedInvoice;
+      if (Object.keys(state.selectedInvoice).length) {
+        editedInvoice.client_country = action.value;
+        return {
+          ...state,
+          selectedInvoice: editedInvoice,
+        };
+      }
       return {
         ...state,
         clientCountry: action.value,
@@ -116,7 +213,14 @@ const reducer = (state, action) => {
     }
 
     case "invoiceDate": {
-      console.log(action.value);
+      let editedInvoice = state.selectedInvoice;
+      if (Object.keys(state.selectedInvoice).length) {
+        editedInvoice.order_date = action.value;
+        return {
+          ...state,
+          selectedInvoice: editedInvoice,
+        };
+      }
       return {
         ...state,
         invoiceDate: action.value,
@@ -132,6 +236,14 @@ const reducer = (state, action) => {
     }
 
     case "projectDescription": {
+      let editedInvoice = state.selectedInvoice;
+      if (Object.keys(state.selectedInvoice).length) {
+        editedInvoice.project_type = action.value;
+        return {
+          ...state,
+          selectedInvoice: editedInvoice,
+        };
+      }
       return {
         ...state,
         projectDescription: action.value,

@@ -22,7 +22,11 @@ function BillTo() {
           className="invoice-input bill-to-input"
           name="clientName"
           onChange={formChangeHandler}
-          value={invoiceState.clientName}
+          value={
+            invoiceState.selectedInvoice
+              ? invoiceState.selectedInvoice.client_name
+              : invoiceState.clientName
+          }
         />
         <label htmlFor="client-email" className="label bill-to-label">
           Client's Email
@@ -31,7 +35,11 @@ function BillTo() {
           type="text"
           className="invoice-input bill-to-input"
           name="clientEmail"
-          value={invoiceState.clientEmail}
+          value={
+            invoiceState.selectedInvoice
+              ? invoiceState.selectedInvoice.client_email
+              : invoiceState.clientEmail
+          }
           onChange={formChangeHandler}
         />
         <label htmlFor="client-street" className="label bill-to-label">
@@ -41,7 +49,11 @@ function BillTo() {
           type="text"
           className="invoice-input bill-to-input"
           name="clientStreetAddress"
-          value={invoiceState.clientStreetAddress}
+          value={
+            invoiceState.selectedInvoice
+              ? invoiceState.selectedInvoice.client_street_address
+              : invoiceState.clientStreetAddress
+          }
           onChange={formChangeHandler}
         />
         <div className="city-state-container">
@@ -52,7 +64,11 @@ function BillTo() {
             <input
               type="text"
               name="clientCity"
-              value={invoiceState.clientCity}
+              value={
+                invoiceState.selectedInvoice
+                  ? invoiceState.selectedInvoice.client_city
+                  : invoiceState.clientCity
+              }
               onChange={formChangeHandler}
               className="invoice-input city-state-input"
             />
@@ -64,7 +80,11 @@ function BillTo() {
             <input
               type="text"
               name="clientState"
-              value={invoiceState.clientState}
+              value={
+                invoiceState.selectedInvoice
+                  ? invoiceState.selectedInvoice.client_state
+                  : invoiceState.clientState
+              }
               onChange={formChangeHandler}
               className="invoice-input city-state-input state-input"
             />
@@ -78,7 +98,11 @@ function BillTo() {
             <input
               type="text"
               name="clientZipCode"
-              value={invoiceState.clientZipCode}
+              value={
+                invoiceState.selectedInvoice
+                  ? invoiceState.selectedInvoice.client_zip
+                  : invoiceState.clientZipCode
+              }
               onChange={formChangeHandler}
               className="invoice-input city-state-input"
             />
@@ -90,7 +114,11 @@ function BillTo() {
             <input
               type="text"
               name="clientCountry"
-              value={invoiceState.clientCountry}
+              value={
+                invoiceState.selectedInvoice
+                  ? invoiceState.selectedInvoice.client_country
+                  : invoiceState.clientCountry
+              }
               onChange={formChangeHandler}
               className="invoice-input city-state-input state-input"
             />

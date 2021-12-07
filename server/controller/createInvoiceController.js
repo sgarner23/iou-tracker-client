@@ -18,6 +18,7 @@ function calculateTotal(lineItems) {
 }
 
 async function addNewInvoice(req, res) {
+  console.log("creating invoice");
   try {
     const db = req.app.get("db");
     const {
@@ -43,7 +44,7 @@ async function addNewInvoice(req, res) {
 
     const invoiceTotal = calculateTotal(lineItems);
 
-    console.log("we bout to save to the db");
+    console.log(req.body);
 
     const newInvoice = await db.invoice.save({
       project_type: projectDescription,

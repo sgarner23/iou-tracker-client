@@ -60,7 +60,6 @@ function Invoice() {
     updateInvoice({ type: "INVOICE_ID", value: id });
   }, [invoiceState.selectedInvoice.order_date]);
 
-  console.log("THIS IS THE INVOICE STATE BITCH ", invoiceState);
   return (
     <React.Fragment>
       {state.modalToDisplay === "deleteInvoice" && (

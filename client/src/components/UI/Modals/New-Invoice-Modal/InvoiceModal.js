@@ -49,7 +49,11 @@ function InvoiceModal() {
       <div className="invoice-card">
         <div className="content-container">
           <GoBack />
-          <p className="new-invoice-text">New Invoice</p>
+          <p className="new-invoice-text">
+            {invoiceState.selectedInvoice.id
+              ? `Edit #IOU${invoiceState.selectedInvoice.id}`
+              : "New Invoice"}
+          </p>
           <BillFrom />
           <BillTo />
           <InvoiceDetails />
