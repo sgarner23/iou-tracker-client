@@ -28,6 +28,7 @@ function App() {
     }
   }, []);
 
+  // Routes are protected if user is not signed in and authenticated
   if (!state.user) {
     return (
       <React.Fragment>

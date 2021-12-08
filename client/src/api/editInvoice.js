@@ -1,7 +1,6 @@
 import axios from "axios";
 
 async function editInvoice(selectedInvoice) {
-  console.log(selectedInvoice);
   try {
     const accessToken = sessionStorage.getItem("accessToken");
     const apiUrl = "http://localhost:4082/api";

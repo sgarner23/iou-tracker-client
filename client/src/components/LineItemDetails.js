@@ -10,12 +10,11 @@ function LineItemDetails() {
   const [lineItemsList, setLineItemsList] = useState([]);
   const [subtotal, setSubtotal] = useState(0);
 
+  //The useEffects below are to update line items and formatting after the component mounts
   useEffect(() => {
     if (invoiceState.currentInvoiceID) {
-      console.log("I AM THE USEEFFECT!");
       const lineItems = getLineItems(invoiceState.currentInvoiceID);
       lineItems.then((res) => {
-        console.log(res);
         setLineItemsList(res.lineItems);
       });
     }

@@ -3,14 +3,17 @@ import { invoiceContext } from "../../../../store/invoiceStore";
 import "./PaymentTerms.css";
 
 function PaymentTerms() {
+  //State variable that allows for payment terms to be displayed when creating a new invoice
   const [purple, setPurple] = useState({
     1: false,
     7: false,
     14: false,
     30: false,
   });
+
   const { invoiceState, updateInvoice } = useContext(invoiceContext);
 
+  //Updates global state for DB call
   function updatePaymentTerms(e) {
     updateInvoice({
       type: "UPDATE_PAYMENT_TERMS",
@@ -20,6 +23,7 @@ function PaymentTerms() {
   }
 
   function clickHandler(e) {
+    //Resets payment term state
     setPurple({
       1: false,
       7: false,
@@ -27,6 +31,7 @@ function PaymentTerms() {
       30: false,
     });
 
+    //Updates state for display message based on which one was clicked
     updatePaymentTerms(e);
     setPurple({
       [e.target.id]: true,

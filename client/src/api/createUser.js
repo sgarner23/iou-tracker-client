@@ -8,7 +8,6 @@ async function createNewUser(firstName, lastName, email, password) {
       email,
       password,
     });
-    console.log(res.data);
   } catch (error) {
     console.log(error);
     return;

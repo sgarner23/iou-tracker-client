@@ -15,6 +15,7 @@ function Profile() {
   const [loading, setLoading] = useState(true);
   const [invoiceListState, setInvoiceListState] = useState([]);
 
+  //Grabbing the signed in user's invoices from the server and DB
   useEffect(() => {
     if (state.user) {
       const allInvoices = getUserInvoices();

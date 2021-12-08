@@ -15,6 +15,7 @@ const LoginFormContainer = ({ loginIsActive, setLoginIsActive }) => {
   const [loginNotSuccessful, setLoginNotSuccessful] = useState(null);
   const navigate = useNavigate();
 
+  //Login form state
   const initialValues = {
     firstName: "",
     firstNameError: false,
@@ -46,6 +47,7 @@ const LoginFormContainer = ({ loginIsActive, setLoginIsActive }) => {
     confirmPasswordError,
   } = formValues;
 
+  //Resets the form when user toggles between login and sign up so fields are blank
   function resetForm() {
     setFormValues({
       firstName: "",
@@ -61,11 +63,13 @@ const LoginFormContainer = ({ loginIsActive, setLoginIsActive }) => {
     });
   }
 
+  //Calls the reset function each time the user clicks on Login or Sign up
   useEffect(() => {
     resetForm();
     setLoginNotSuccessful(null);
   }, [loginIsActive]);
 
+  //Logic for form state and error state
   function handleFormChange(e) {
     setLoginNotSuccessful(null);
     const { name, value } = e.target;
@@ -88,6 +92,7 @@ const LoginFormContainer = ({ loginIsActive, setLoginIsActive }) => {
     }
   }
 
+  //Determines if fields were correctly filled out
   async function submitHandler(e) {
     e.preventDefault();
     let isLoginError = false;

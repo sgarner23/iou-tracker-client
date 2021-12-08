@@ -25,6 +25,7 @@ async function loginUser(req, res) {
       email: user.email,
     };
 
+    //jwt token created and sent back to client with user data
     const accessToken = jwt.sign(userRes, process.env.JWT_SECRET);
 
     res.status(200).send({ user: userRes, accessToken });

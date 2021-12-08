@@ -17,11 +17,11 @@ function DeleteModal(selectedInvoiceID) {
     const deletedInvoice = await invoiceDelete(
       selectedInvoiceID.selectedInvoiceID
     );
+
+    //Modal closed and user redirected to their profile once api call is finished
     if (deletedInvoice) {
       dispatch({ type: "CLOSE_MODAL" });
       navigate("/profile");
-    } else {
-      console.log("we had an issue ");
     }
   }
   return (

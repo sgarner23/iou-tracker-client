@@ -10,8 +10,7 @@ function GoBack() {
   const { state, dispatch } = useContext(userContext);
   const { invoiceState, updateInvoice } = useContext(invoiceContext);
 
-  console.log(invoiceState.selectedInvoice);
-
+  //This component is used on multiple models. This will determine if user needs to be redirected to the profile page as well as have the modal closed
   function clickGoBack() {
     if (state.modalToDisplay) {
       dispatch({ type: "CLOSE_MODAL" });

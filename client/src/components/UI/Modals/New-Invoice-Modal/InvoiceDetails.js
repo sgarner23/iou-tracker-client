@@ -16,7 +16,7 @@ function InvoiceDetails() {
     currentOrderDate = invoiceState.selectedInvoice.order_date.split("-");
   }
 
-  //reformatting the date to meet required format, "yyyy-mm-dd"
+  //Reformatting the date to meet required format, "yyyy-mm-dd"
   function formatDate(date) {
     if (!invoiceState.selectedInvoice.order_date) {
       return "";
@@ -31,10 +31,13 @@ function InvoiceDetails() {
     return (date = date.join("-"));
   }
 
+  //Updates global state on payment terms that's later used to store in DB
   function clickPaymentTermsHandler() {
     updateInvoice({ type: "SELECT_PAYMENT_TERMS" });
   }
 
+  //Function used on form and reusable accross all fields by referencing the "name" property
+  //Global state is updated in real time
   function formChangeHandler(e) {
     updateInvoice({ type: e.target.name, value: e.target.value });
   }
@@ -56,6 +59,7 @@ function InvoiceDetails() {
           }
         />
 
+        {/* Users are only allowed to edit certain details once an invoice is submitted */}
         {id ? null : (
           <React.Fragment>
             <label htmlFor="payment-terms" className="label bill-to-label">

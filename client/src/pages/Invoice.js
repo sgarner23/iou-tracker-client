@@ -22,6 +22,7 @@ function Invoice() {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  //Finds the correct invoice data to display off of global state
   state.usersInvoices.forEach((invoice) => {
     if (invoice.id === +id && invoiceState.selectedInvoice.id !== +id) {
       updateInvoice({ type: "SELECTED_INVOICE", value: invoice });
@@ -41,6 +42,7 @@ function Invoice() {
     dispatch({ type: "EDIT_INVOICE_MODAL" });
   }
 
+  //Used to format the day i.e. 02 Aug 2021
   function formatDate(date) {
     const invoiceDate = new Date(date);
     let dateMiliSecs = Date.parse(invoiceDate);

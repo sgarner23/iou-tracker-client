@@ -12,11 +12,7 @@ const Login = () => {
   const { state, dispatch } = useContext(userContext);
   const [loginIsActive, setLoginIsActive] = useState(true);
 
-  // sessionStorage.removeItem("accessToken");
-  // sessionStorage.removeItem("userData");
-
-  // console.log("running");
-
+  //Displaying the login or sign up form based on which button is clicked
   function clickHandler(e) {
     if (e.target.textContent === "Login" && !loginIsActive) {
       setLoginIsActive(true);

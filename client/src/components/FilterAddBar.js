@@ -11,6 +11,7 @@ function FilterAddBar({ loading }) {
     dispatch({ type: "NEW_INVOICE_MODAL" });
   }
 
+  //Determines invoice display message on profile page and shows loading status
   const numOfInvoices = () => {
     if (loading) {
       return <p>Loading...</p>;

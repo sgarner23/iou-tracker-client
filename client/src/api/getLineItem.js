@@ -12,7 +12,6 @@ async function getLineItems(invoiceID) {
       },
     });
     const res = await authAxios.get(`${apiUrl}/line-items/${invoiceID}`);
-    console.log(res.data);
     const lineItems = res.data;
     return lineItems;
   } catch (error) {

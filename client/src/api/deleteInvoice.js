@@ -11,7 +11,6 @@ async function invoiceDelete(invoiceID) {
         access_token: accessToken,
       },
     });
-
     const res = await authAxios.delete(`${apiUrl}/delete/${invoiceID}`);
     if (res) {
       return res.data;

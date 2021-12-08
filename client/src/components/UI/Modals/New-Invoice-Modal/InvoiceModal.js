@@ -21,14 +21,17 @@ function InvoiceModal() {
   const { invoiceState, updateInvoice } = useContext(invoiceContext);
   const { id } = useParams();
 
+  //Adds another component for additional line items to be entered
   function newLineClickHandler() {
     updateLineItem({ type: "ADD_NEW_LINE" });
   }
 
+  //Lists out all line items and displays them on modal
   const listOfLineItems = lineItemState.lineItems.map((line, index) => {
     return <ItemInForm index={index} key={index} />;
   });
 
+  //Utilizes api function to store a new invoice. Default status is pending.
   async function submitInvoice(e) {
     let status = "Pending";
     if (e.target.textContent === "Discard") {
@@ -38,6 +41,7 @@ function InvoiceModal() {
       return;
     }
 
+    //Checks for editing to hit a different end point on the server
     if (invoiceState.editingInvoice) {
       await editInvoice(invoiceState.selectedInvoice);
       updateLineItem({ type: "RESET" });

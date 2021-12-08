@@ -6,6 +6,7 @@ import icon_delete from "../../../../assets/icon_delete.svg";
 function ItemInForm({ index }) {
   const { lineItemState, updateLineItem } = useContext(lineItemContext);
 
+  //Updates the line item values on global state and displays it back to the user onChange
   function formChangeHandler(e) {
     updateLineItem({
       type: e.target.name,
@@ -13,6 +14,7 @@ function ItemInForm({ index }) {
       index,
     });
   }
+
   function deleteHandler() {
     updateLineItem({
       type: "DELETE_LINE",

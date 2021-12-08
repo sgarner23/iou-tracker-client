@@ -18,6 +18,7 @@ function InvoiceCard({
   const { state, dispatch } = useContext(userContext);
   const { invoiceState, updateInvoice } = useContext(invoiceContext);
 
+  //Updates global state to "editing mode" and redirects user to that single invoice
   function invoiceClickHandler() {
     navigate(`/invoice/${number}`);
     updateInvoice({ type: "EDITING" });

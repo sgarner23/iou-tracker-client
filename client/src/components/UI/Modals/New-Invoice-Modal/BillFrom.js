@@ -5,6 +5,8 @@ import "./BillFrom.css";
 function BillFrom() {
   const { invoiceState, updateInvoice } = useContext(invoiceContext);
 
+  //Function used on form and reusable accross all fields by referencing the "name" property
+  //Global state is updated in real time
   function formChangeHandler(e) {
     updateInvoice({ type: e.target.name, value: e.target.value });
   }

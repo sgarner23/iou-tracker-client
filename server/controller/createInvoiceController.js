@@ -1,3 +1,9 @@
+/*
+  This controller is used for any creating and updating to any invoice by the user
+  Massive JS library used to query and update database
+*/
+
+//Determines due date of payment based on when the invoice was created and the payment terms
 function calculatePaymentDate(numOfDays, orderDate) {
   const invoiceDate = new Date(orderDate);
   invoiceDate.setDate(invoiceDate.getDate() + +numOfDays);
@@ -8,6 +14,7 @@ function calculatePaymentDate(numOfDays, orderDate) {
   return newDateArr.join(" ");
 }
 
+//Adds all line items to subtotal the cost of the total invoice
 function calculateTotal(lineItems) {
   let total = 0;
   for (let i = 0; i < lineItems.length; i++) {
@@ -67,8 +74,6 @@ async function addNewInvoice(req, res) {
       client_zip: clientZipCode,
     });
 
-    console.log("this is the new invoice: ", newInvoice);
-
     for (let i = 0; i < lineItems.length; i++) {
       console.log("this is line items ", lineItems[i]);
       const newLineItem = await db.line_items.save({
@@ -78,7 +83,6 @@ async function addNewInvoice(req, res) {
         item_name: lineItems[i].itemName,
         subtotal: lineItems[i].subtotal,
       });
-      console.log(newLineItem);
     }
 
     res.status(200).send({ newInvoice });
@@ -89,8 +93,6 @@ async function addNewInvoice(req, res) {
 }
 
 async function editInvoice(req, res) {
-  console.log("WE ARE GONNA EDIT");
-
   try {
     const db = req.app.get("db");
     const { selectedInvoice } = req.body;

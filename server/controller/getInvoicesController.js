@@ -2,7 +2,6 @@ async function getInvoices(req, res) {
   try {
     const db = req.app.get("db");
     const { userID } = req;
-    console.log("User ID: ", userID);
 
     let invoices = await db.invoice.find(
       {
@@ -29,7 +28,6 @@ async function findInvoice(req, res) {
   const { invoiceID } = req;
 
   try {
-    console.log("hello invoice");
     const db = req.app.get("db");
 
     let invoice = await db.invoice.findOne({
@@ -44,19 +42,15 @@ async function findInvoice(req, res) {
 }
 
 async function findLineItems(req, res) {
-  console.log(req.params);
   const { id } = req.params;
 
   try {
-    console.log("hello Stephen");
     const db = req.app.get("db");
-    console.log("I am the ID ", id);
 
     let lineItems = await db.line_items.find({
       invoice_id: id,
     });
 
-    console.log(lineItems);
     res.status(200).send({ lineItems });
   } catch (error) {
     console.log(error);

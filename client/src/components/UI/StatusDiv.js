@@ -1,6 +1,7 @@
 import React from "react";
 import "./StatusDiv.css";
 
+//CSS classes dynamically passed based on the status the user selected
 function StatusDiv({ invoiceStatus }) {
   return (
     <React.Fragment>

@@ -8,10 +8,12 @@ function Header() {
   const [showLogoutBox, setShowLogoutBox] = useState(false);
   const navigate = useNavigate();
 
+  //Toggles logout div on and off
   function displayLogoutBox() {
     setShowLogoutBox(!showLogoutBox);
   }
 
+  //Removes their access token and data then they're redirected to the login page and all views will be restricted until login is completed again.
   function logoutUser() {
     window.sessionStorage.removeItem("accessToken");
     window.sessionStorage.removeItem("userData");
