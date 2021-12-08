@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { useParams } from "react-router";
 import { invoiceContext } from "../../../../store/invoiceStore";
 import icon_arrow_down from "../../../../assets/icon_arrow_down.svg";
 import "./InvoiceDetails.css";
@@ -6,6 +7,7 @@ import PaymentTerms from "./PaymentTerms";
 
 function InvoiceDetails() {
   const { invoiceState, updateInvoice } = useContext(invoiceContext);
+  const { id } = useParams();
 
   let day = "";
   let currentOrderDate = [];
@@ -53,24 +55,27 @@ function InvoiceDetails() {
             formatDate(currentOrderDate)
           }
         />
-        <label htmlFor="payment-terms" className="label bill-to-label">
-          Payment Terms
-        </label>
-        <div
-          className="invoice-input bill-to-input date-input select-dropdown"
-          name="payment-terms"
-        >
-          {invoiceState.selectedInvoice.payment_terms
-            ? invoiceState.selectedInvoice.payment_terms
-            : invoiceState.displayMessage}
-          <img
-            src={icon_arrow_down}
-            alt="down-arrow"
-            className="invoice-down-arrow"
-            onClick={clickPaymentTermsHandler}
-          />
-        </div>
-        {invoiceState.paymentTermOptions && <PaymentTerms />}
+
+        {id ? null : (
+          <React.Fragment>
+            <label htmlFor="payment-terms" className="label bill-to-label">
+              Payment Terms
+            </label>
+            <div
+              className="invoice-input bill-to-input date-input select-dropdown"
+              name="payment-terms"
+            >
+              {invoiceState.displayMessage}
+              <img
+                src={icon_arrow_down}
+                alt="down-arrow"
+                className="invoice-down-arrow"
+                onClick={clickPaymentTermsHandler}
+              />
+            </div>
+            {invoiceState.paymentTermOptions && <PaymentTerms />}
+          </React.Fragment>
+        )}
         <label htmlFor="project-description" className="label bill-to-label">
           Project Description
         </label>

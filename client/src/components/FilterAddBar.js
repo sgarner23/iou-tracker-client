@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { userContext } from "../store/userStore";
-import icon_arrow_down from "../assets/icon_arrow_down.svg";
 import icon_plus from "../assets/icon_plus.svg";
 import LoginButton from "./UI/LoginButton";
 import "./FilterAddBar.css";
@@ -27,14 +26,6 @@ function FilterAddBar({ loading }) {
       <div className="invoice-text-container">
         <p className="invoice-header">Invoices</p>
         <div className="invoice-text">{numOfInvoices()}</div>
-      </div>
-      <div className="dropdown-container">
-        <p className="filter-text">Filter</p>
-        <img
-          src={icon_arrow_down}
-          alt="arrow pointing down"
-          className="arrow-down"
-        />
       </div>
       <LoginButton
         onClick={clickNewInvoiceHandler}

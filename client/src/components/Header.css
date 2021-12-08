@@ -6,11 +6,13 @@
 
 .profile-pic-container {
   padding: 15px;
+  cursor: pointer;
 }
 .profile-picture {
   width: auto;
   height: 42px;
   border-radius: 50%;
+  position: relative;
 }
 
 .middle-header-container {
@@ -19,17 +21,6 @@
   display: flex;
   align-items: center;
   justify-content: end;
-}
-
-.moon-sun-container {
-  padding: 15px;
-  justify-self: flex-end;
-  cursor: pointer;
-}
-
-.moon-sun {
-  width: 20px;
-  height: 20px;
 }
 
 .header-icon-container {
@@ -71,4 +62,24 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.logout-container {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  box-shadow: 0px 10px 20px rgba(72, 84, 159, 0.25);
+  border-radius: 8px;
+  height: 80px;
+  width: 125px;
+  top: 85px;
+  right: 20px;
+}
+
+.logout-text {
+  color: #7c5dfa;
+  cursor: pointer;
+  font-weight: bold;
 }

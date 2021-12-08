@@ -1,11 +1,22 @@
-import React from "react";
-import Stephen_Mia from "../assets/Stephen_Mia.jpeg";
-import icon_moon from "../assets/icon_moon.svg";
+import React, { useState } from "react";
+import { useNavigate } from "react-router";
+import avatar from "../assets/avatar.svg";
 import logo from "../assets/logo.svg";
-
 import "./Header.css";
 
 function Header() {
+  const [showLogoutBox, setShowLogoutBox] = useState(false);
+  const navigate = useNavigate();
+
+  function displayLogoutBox() {
+    setShowLogoutBox(!showLogoutBox);
+  }
+
+  function logoutUser() {
+    window.sessionStorage.removeItem("accessToken");
+    window.sessionStorage.removeItem("userData");
+    navigate("/login");
+  }
   return (
     <div className="header-container">
       <div className="header-icon-container">
@@ -17,17 +28,16 @@ function Header() {
         <img src={logo} alt="logo" className="logo" />
       </div>
 
-      <div className="middle-header-container">
-        <div className="moon-sun-container">
-          <img src={icon_moon} alt="moon sun dark theme" className="moon-sun" />
-        </div>
-      </div>
-      <div className="profile-pic-container">
-        <img
-          src={Stephen_Mia}
-          alt="profile picture"
-          className="profile-picture"
-        />
+      <div className="middle-header-container"></div>
+      <div onClick={displayLogoutBox} className="profile-pic-container">
+        <img src={avatar} alt="profile picture" className="profile-picture" />
+        {showLogoutBox && (
+          <div className="logout-container">
+            <p onClick={logoutUser} className="logout-text">
+              Logout
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );

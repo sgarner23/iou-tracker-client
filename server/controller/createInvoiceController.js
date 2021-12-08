@@ -113,6 +113,7 @@ async function editInvoice(req, res) {
       client_zip: selectedInvoice.client_zip,
       client_country: selectedInvoice.client_country,
       project_type: selectedInvoice.project_type,
+      order_date: selectedInvoice.order_date,
     };
 
     const options = {
