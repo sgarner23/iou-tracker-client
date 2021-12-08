@@ -68,3 +68,23 @@
     transform: translate(0);
   }
 }
+
+/* Tablet View */
+
+@media (min-width: 700px) {
+  .card-container {
+    width: 672px;
+    height: 72px;
+    flex-direction: row;
+  }
+}
+
+/* Desktop View */
+
+@media (min-width: 1200px) {
+  .card-container {
+    width: 740px;
+    height: 72px;
+    flex-direction: row;
+  }
+}

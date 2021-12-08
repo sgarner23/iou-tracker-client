@@ -18,15 +18,9 @@ import InvoiceModal from "../components/UI/Modals/New-Invoice-Modal/InvoiceModal
 function Invoice() {
   const { state, dispatch } = useContext(userContext);
   const { invoiceState, updateInvoice } = useContext(invoiceContext);
-
-  const [loadState, setLoadState] = useState(true);
   const [orderDate, setOrderDate] = useState("");
   const { id } = useParams();
   const navigate = useNavigate();
-  console.log(id);
-  console.log(state.usersInvoices);
-
-  console.log(invoiceState);
 
   state.usersInvoices.forEach((invoice) => {
     if (invoice.id === +id && invoiceState.selectedInvoice.id !== +id) {

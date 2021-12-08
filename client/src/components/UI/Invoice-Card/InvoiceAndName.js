@@ -10,7 +10,9 @@ function InvoiceAndName({ number, clientName }) {
         <p className="num-sign">#</p>
         <p className="invoice-number">{`IOU${number}`}</p>
       </div>
-      <p className="customer-name">{clientName}</p>
+      <div className="customer-name-container">
+        <p className="customer-name">{clientName}</p>
+      </div>
     </div>
   );
 }

@@ -22,3 +22,16 @@
 .customer-name {
   color: #7f88c3;
 }
+
+/* Tablet View */
+@media (min-width: 700px) {
+  .invoice-name {
+    width: 380px;
+    padding: 0 0 0 15px;
+    align-items: center;
+  }
+
+  .customer-name-container {
+    width: 100px;
+  }
+}

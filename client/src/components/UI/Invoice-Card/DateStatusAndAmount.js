@@ -8,7 +8,9 @@ function DateStatusAndAmount({ dueDate, total, invoiceStatus }) {
     <div className="date-status-amount">
       <div className="date-amount-container">
         <p className="date-due">{`Due ${dueDate}`}</p>
-        <p className="amount">{`$${numberWithCommas(total.toFixed(2))}`}</p>
+        <div className="amount-container">
+          <p className="amount">{`$${numberWithCommas(total.toFixed(2))}`}</p>
+        </div>
       </div>
       <StatusDiv invoiceStatus={invoiceStatus} />
     </div>
