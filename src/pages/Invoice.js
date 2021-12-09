@@ -29,9 +29,10 @@ function Invoice() {
     }
   });
 
-  function markAsPaidHandler() {
-    paid(invoiceState.selectedInvoice.id);
+  async function markAsPaidHandler() {
+    await paid(invoiceState.selectedInvoice.id);
     navigate("./profile");
+    updateInvoice({ type: "RESET" });
   }
 
   function deleteHandler() {

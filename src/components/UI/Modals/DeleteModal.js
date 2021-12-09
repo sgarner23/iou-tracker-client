@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { invoiceContext } from "../../../store/invoiceStore";
 import { userContext } from "../../../store/userStore";
 import { useNavigate } from "react-router";
 import LoginButton from "../LoginButton";
@@ -7,6 +8,7 @@ import "./DeleteModal.css";
 
 function DeleteModal(selectedInvoiceID) {
   const { state, dispatch } = useContext(userContext);
+  const { invoiceState, updateInvoice } = useContext(invoiceContext);
   const navigate = useNavigate();
 
   function cancelHandler() {
@@ -22,6 +24,7 @@ function DeleteModal(selectedInvoiceID) {
     if (deletedInvoice) {
       dispatch({ type: "CLOSE_MODAL" });
       navigate("/profile");
+      updateInvoice({ type: "RESET" });
     }
   }
   return (
