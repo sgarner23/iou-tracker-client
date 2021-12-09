@@ -2,7 +2,7 @@ import axios from "axios";
 
 async function createNewInvoice(invoiceState, lineItemState, invoiceStatus) {
   const accessToken = sessionStorage.getItem("accessToken");
-  const apiUrl = "http://localhost:4082/api";
+  const apiUrl = `${process.env.REACT_APP_BACKEND_URL}`;
 
   const authAxios = axios.create({
     baseURL: apiUrl,
@@ -11,7 +11,7 @@ async function createNewInvoice(invoiceState, lineItemState, invoiceStatus) {
     },
   });
   try {
-    const res = await authAxios.post("http://localhost:4082/api/invoice", {
+    const res = await authAxios.post("/invoice", {
       ...invoiceState,
       ...lineItemState,
       invoiceStatus,

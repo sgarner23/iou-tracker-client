@@ -2,7 +2,7 @@ import axios from "axios";
 
 async function getUserInfoOnLogin(email, password) {
   try {
-    const res = await axios.post("http://localhost:4082/api/login", {
+    const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/login`, {
       email,
       password,
     });

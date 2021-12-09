@@ -2,7 +2,7 @@ import axios from "axios";
 
 async function createNewUser(firstName, lastName, email, password) {
   try {
-    const res = await axios.post("http://localhost:4082/api/user", {
+    const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user`, {
       firstName,
       lastName,
       email,

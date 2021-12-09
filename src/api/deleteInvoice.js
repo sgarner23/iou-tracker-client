@@ -3,7 +3,7 @@ import axios from "axios";
 async function invoiceDelete(invoiceID) {
   try {
     const accessToken = sessionStorage.getItem("accessToken");
-    const apiUrl = "http://localhost:4082/api";
+    const apiUrl = `${process.env.REACT_APP_BACKEND_URL}`;
 
     const authAxios = axios.create({
       baseURL: apiUrl,
@@ -11,7 +11,7 @@ async function invoiceDelete(invoiceID) {
         access_token: accessToken,
       },
     });
-    const res = await authAxios.delete(`${apiUrl}/delete/${invoiceID}`);
+    const res = await authAxios.delete(`/delete/${invoiceID}`);
     if (res) {
       return res.data;
     }
